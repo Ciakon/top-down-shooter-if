@@ -12,9 +12,11 @@ Tax evasion
 ### Enemy:
 - Pathfinding to player
 - Shooting towards player
+- Health system
 
 ### Player:
 - Ability to move and shoot (wasd + mouse)
+- Health system
 
 ### World:
 - Obstacles (walls or crates) with collision
