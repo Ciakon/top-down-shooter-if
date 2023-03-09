@@ -3,12 +3,6 @@ Tax evasion
 
 
 
-need to have 
-
-
-
-
-nice to have
 
 
 
