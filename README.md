@@ -13,7 +13,7 @@ Tax evasion
 |Player         | Different weapons |
 |World         | Vehicles |
 
-#### Enemy:
+### Enemy:
 - Pathfinding to player
 - Shooting towards player
 
