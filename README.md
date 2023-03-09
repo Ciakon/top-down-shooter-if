@@ -3,6 +3,7 @@ Tax evasion
 
 
 - [ ] lav gun
+- [x] lav mindmap
 
 
 
