@@ -2,14 +2,12 @@
 
 
 
+let characterShotgunMoveAnimation;
+let characterShotgunIdleAnimation;
 
-
-
-let player;
-let x=0;
-let y=0;
 function preload() {
-  player = loadImage('assets/playerShotgunMove.gif');
+  characterShotgunMoveAnimation = loadImage('assets/characterShotgunMove.gif');
+  characterShotgunIdleAnimation = loadImage('assets/characterShotgunIdle.png');
 }
 
 
@@ -18,14 +16,17 @@ function preload() {
 
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
+
+  player = new Character()
   
 }
 
 function draw() {
   background(220);
-  x++
-  image(player, x, y, 50, 50);
+  
+  player.show()
+  
   //saveGif(playerShotgunMove, 100)
 }
 
