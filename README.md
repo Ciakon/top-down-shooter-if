@@ -1,5 +1,8 @@
-# top-down-shooter-if
-Tax evasion
+## Project description
+
+Tax evasion is our main goal.
+
+We want to make a fun top-down shooter for young people. 
 
 ## kravspecifikation
 
