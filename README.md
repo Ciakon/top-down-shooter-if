@@ -1,10 +1,6 @@
 # top-down-shooter-if
 Tax evasion
 
-## ting vi skal lave
-- [x] mindmap
-- [ ] kravspecifikation
-
 ## kravspecifikation
 
 | need to have  | nice to have |
@@ -17,22 +13,22 @@ Tax evasion
 - Pathfinding to player
 - Shooting towards player
 
-Player:
+### Player:
 - Ability to move and shoot (wasd + mouse)
 
-World:
+### World:
 - Obstacles (walls or crates) with collision
 
-Story:
+### Story:
 - Story about tax evasion and lemonade stand
 
-Different weapons:
+### Different weapons:
 - rpg
 - minigun
 - lmg
 - sniper
 
-Vehicles:
+### Vehicles:
 - car
 - motorbike
 
