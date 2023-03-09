@@ -1,10 +1,16 @@
 # top-down-shooter-if
 Tax evasion
 
+## ting vi skal lave
+- [x] mindmap
+- [ ] kravspecifikation
+
 ## kravspecifikation
 
-- [ ] lav gun
-- [x] lav mindmap
+| need to have  | nice to have |
+| ------------- | ------------- |
+|     enemy     | Content Cell  |
+|    player     | Content Cell  |
 
 
 
