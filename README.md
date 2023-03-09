@@ -9,11 +9,11 @@ Tax evasion
 
 | need to have  | nice to have |
 | ------------- | ------------- |
-|     enemy     | Content Cell  |
-|    player     | Content Cell  |
+|Enemy          | Content Cell  |
+|Player         | Content Cell  |
 
 
 
 
-
+## links
 https://www.mindmeister.com/map/2622379254
