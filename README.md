@@ -9,6 +9,7 @@ Tax evasion
 |Player         | Different weapons |
 |World         | Vehicles |
 |         | Start-screen |
+|         | Animations |
 
 ### Enemy:
 - Pathfinding to player
@@ -26,17 +27,20 @@ Tax evasion
 - Story about tax evasion and lemonade stand
 
 ### Different weapons:
-- rpg
-- minigun
-- lmg
-- sniper
+- Rpg
+- Minigun
+- Lmg
+- Sniper
 
 ### Vehicles:
-- car
-- motorbike
+- Car
+- Motorbike
 
 ### Start-screen:
-- you can press play
+- You can press play
+
+### Animations:
+- Animations for player and enemy movement
 
 ## links
 https://www.mindmeister.com/map/2622379254
