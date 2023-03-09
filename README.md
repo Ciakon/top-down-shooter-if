@@ -14,16 +14,17 @@ Tax evasion
 |World         | Vehicles |
 
 Enemy:
-Pathfinding to player
-Shooting towards player
+- Pathfinding to player
+- Shooting towards player
 
 Player:
-Ability to move and shoot (wasd + mouse)
+- Ability to move and shoot (wasd + mouse)
 
 World:
-Obstacles (walls or crates) with collision
+- Obstacles (walls or crates) with collision
+
 Story:
-Story about tax evasion and lemonade stand
+- Story about tax evasion and lemonade stand
 
 Different weapons:
 - rpg
