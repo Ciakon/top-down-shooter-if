@@ -8,6 +8,7 @@ Tax evasion
 |Enemy          | Story  |
 |Player         | Different weapons |
 |World         | Vehicles |
+|         | Start-screen |
 
 ### Enemy:
 - Pathfinding to player
@@ -33,6 +34,9 @@ Tax evasion
 ### Vehicles:
 - car
 - motorbike
+
+### Start-screen:
+- you can press play
 
 ## links
 https://www.mindmeister.com/map/2622379254
