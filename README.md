@@ -40,7 +40,7 @@ Tax evasion
 - You can press play
 
 ### Animations:
-- Animations for player and enemy movement
+- Animations for player and enemy movement, and shooting
 
 ## links
 https://www.mindmeister.com/map/2622379254
