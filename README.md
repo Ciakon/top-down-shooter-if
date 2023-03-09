@@ -9,10 +9,15 @@ Tax evasion
 
 | need to have  | nice to have |
 | ------------- | ------------- |
-|Enemy          | Content Cell  |
-|Player         | Content Cell  |
+|Enemy          | Story  |
+|Player         | Different weapons |
 
+Enemy:
+Pathfinding to player
+Shooting towards player
 
+Player:
+Ability to move and shoot (wasd + mouse)
 
 
 ## links
