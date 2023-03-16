@@ -17,7 +17,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
+  angleMode(DEGREES)
   player = new Character()
   
 }
@@ -26,6 +26,7 @@ function draw() {
   background(220);
   
   player.show()
+  player.move()
   
   //saveGif(playerShotgunMove, 100)
 }
