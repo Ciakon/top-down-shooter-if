@@ -4,6 +4,7 @@ class Character {
     this.xPosition = 200
     this.yPosition = 200
     this.currentAnimation = characterShotgunMoveAnimation
+    this.facing
   }
 
   show() {
