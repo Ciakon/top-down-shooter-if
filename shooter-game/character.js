@@ -7,11 +7,24 @@ class Character {
   }
 
   show() {
-    image(this.currentAnimation, this.xPosition, this.yPosition, 50, 50);
+    image(this.currentAnimation, 0, windowHeight, 50, 50);
   }
 
   move() {
-    
+    if(keyIsPressed){
+      if(keyCode == 87){
+        this.yPosition--
+      }
+      if(keyCode == 83){
+        this.yPosition++
+      }
+      if(keyCode == 65){
+        this.xPosition--
+      }
+      if(keyCode == 68){
+        this.xPosition++
+      }
+    }
   }
 
   shoot() {
