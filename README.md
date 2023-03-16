@@ -4,6 +4,8 @@ Tax evasion is our main goal.
 
 We want to make a fun top-down shooter for young people. 
 
+Vores målgruppe er killers. Ud fra vores undersøgelse, har vi fundet ud af at de prioritere gameplay, performance, visuals. Vi vil derfor fokusere på disse punkter i udviklingen af spillets
+
 ## kravspecifikation
 
 | need to have  | nice to have |
@@ -25,6 +27,7 @@ We want to make a fun top-down shooter for young people.
 
 ### World:
 - Obstacles (walls or crates) with collision
+- open world, ting bevæger sig om spilleren.
 
 ### Story:
 - Story about tax evasion and lemonade stand
