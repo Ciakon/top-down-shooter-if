@@ -1,3 +1,6 @@
+
+
+
 class Player extends Character {
     constructor() {
         super();
@@ -10,7 +13,9 @@ class Player extends Character {
         let Dx = this.position.x - mouseX;
         let Dy = this.position.y - mouseY;
         let c = sqrt(Dx ** 2 + Dy ** 2);
-        this.facing = acos(Dx / c);
+        this.angle = acos(-Dx / c);
+        //line(mouseX, mouseY, this.position.x, this.position.y)
+        
     }
 
     movePlayer(Left, Right, Up, Down) {
@@ -28,7 +33,16 @@ class Player extends Character {
     }
 
     show() {
-        image(this.currentAnimation, this.position.x, this.position.y, 50, 50);
+        push()
+        translate(this.position.x, this.position.y)
+        if(mouseY<this.position.y){
+            this.angle*=-1
+        }
+        rotate(player.angle)
+        image(this.currentAnimation, 0, 0, characterSize, characterSize);
+        pop()
+    }
+    ui(){
         noFill();
         rect(10, 10, this.maxHealth, 25);
         fill("Red");
@@ -40,4 +54,8 @@ class Player extends Character {
         fill("black")
         text("x" + this.ammo,this.maxHealth +35,25)
     }
+}
+
+function mousePressed() {
+    player.shoot()
 }
