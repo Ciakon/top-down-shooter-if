@@ -39,7 +39,7 @@ function setup() {
   //character = new Character()
   player = new Player()
   enemy = new Enemy()
-  //song.play()
+  mySound.play();
 }
 
 function draw() {
