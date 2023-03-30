@@ -6,10 +6,12 @@ class Enemy extends Character {
         this.enemyMaxHealth = 20;
     }
     noticePlayer(){
-        let Dx = player.position.x - this.position.x;
-        let Dy = player.position.y - this.position.y;
-        let c = sqrt(Dx ** 2 + Dy ** 2);
-        this.angle = acos(-Dx / c)+180;
+        let dx = this.position.x - player.position.x;
+        let dy = this.position.y - player.position.y;
+        let c = sqrt(dx ** 2 + dy ** 2);
+        this.angle = 180 - acos(dx / c);
+
+        
 
     }
 
@@ -24,7 +26,7 @@ class Enemy extends Character {
         }
         push()
         translate(this.position.x, this.position.y)
-        rotate(this.angle)
+        rotate(-this.angle)
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
         pop()
     }

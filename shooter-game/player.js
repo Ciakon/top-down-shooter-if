@@ -8,11 +8,16 @@ class Player extends Character {
     }
 
     direction() {
-        let Dx = this.position.x - mouseX;
-        let Dy = this.position.y - mouseY;
-        let c = sqrt(Dx ** 2 + Dy ** 2);
-        this.angle = acos(-Dx / c);
-        //line(mouseX, mouseY, this.position.x, this.position.y)
+        let dx = this.position.x - mouseX;
+        let dy = this.position.y - mouseY;
+        let c = sqrt(dx ** 2 + dy ** 2);
+        this.angle = 180 - acos(dx / c);
+
+        if(mouseY > this.position.y){
+            this.angle = 360 - this.angle;
+        }
+
+        //line(mouseX, mouseY, this.position.x, this.position.y)y
     }
 
     movePlayer(Left, Right, Up, Down) {
@@ -30,12 +35,10 @@ class Player extends Character {
     }
 
     show() {
-        if(mouseY<this.position.y){
-            this.angle*=-1
-        }
+        
         push()
         translate(this.position.x, this.position.y)
-        rotate(player.angle)
+        rotate(-player.angle)
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
         pop()
     }
@@ -47,7 +50,7 @@ class Player extends Character {
         rect(windowWidth/10, windowHeight/25, this.maxHealth, 25);
         fill("Red");
         //Current Health
-        rect(windowWidth/10-(this.maxHealth-this.Health)/2, windowHeight/25, this.Health, 25);
+        rect(windowWidth/10-(this.maxHealth-this.health)/2, windowHeight/25, this.health, 25);
         fill("Gold");
         stroke("black");
         //Ammo indicator

@@ -5,10 +5,14 @@ class Character {
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
-    this.weapon = "pistol"
+    this.weapon = "shotgun"
     this.existingBullets = [];
     this.maxHealth = 100;
-    this.Health = 80;
+    this.health = 80;
+    this.size = 1;
+    this.shootingCooldown = 0;
+    this.hitbox = [];
+    this.generateHitbox()
   }
 
   show() {
@@ -51,16 +55,29 @@ class Character {
   }
 
   shoot() {
-    if (this.weapon == "pistol") {
-      append(this.existingBullets, new Bullet(this.position.x, this.position.y, this.angle, 7))
+
+    if (this.weapon == "shotgun") {
+      this.shootingCooldown = 60
+      let inaccuracy = 10
+      let barrelLocation = { x : cos(this.angle + 331)*29*this.size, y : sin(this.angle + 331)*29*this.size}
+      let bulletAmount = 7;
+
+      for (let i = 0; i < bulletAmount; i++) {
+        append(this.existingBullets, new Bullet(this.position.x + barrelLocation.x, this.position.y - barrelLocation.y, this.angle + random(-inaccuracy, inaccuracy), 7))
+      }
     }
   }
 
   handleBullets() {
+    if (this.shootingCooldown > 0) {
+      this.shootingCooldown--;
+    }
     for (let i = 0; i < this.existingBullets.length; i++) {
       push()
       translate(this.existingBullets[i].position.x, this.existingBullets[i].position.y)
-      rect(0, 0, 20, 10)
+      rotate(-this.existingBullets[i].angle)
+      fill("gold")
+      rect(0, 0, 10, 5)
 
       this.existingBullets[i].position.x += cos(this.existingBullets[i].angle) * this.existingBullets[i].speed;
       this.existingBullets[i].position.y -= sin(this.existingBullets[i].angle) * this.existingBullets[i].speed;
@@ -68,6 +85,26 @@ class Character {
 
     }
 
+  }
+
+  generateHitbox() {
+    append(this.hitbox, {x:-5, y:5, w:25, h:25})
+    append(this.hitbox, {x:-11, y:-10, w:12, h:9})
+  }
+
+  showHitbox(color) {
+    push()
+    translate(this.position.x, this.position.y)
+    rotate(-this.angle)
+    noFill()
+    strokeWeight(2)
+    stroke(color)
+    
+    for (let i = 0; i < this.hitbox.length; i++) {
+      rect(this.hitbox[i].x, this.hitbox[i].y, this.hitbox[i].w, this.hitbox[i].h)
+    }
+
+    pop()
   }
 
 

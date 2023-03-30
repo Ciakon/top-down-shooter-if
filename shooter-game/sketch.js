@@ -21,6 +21,7 @@ function preload() {
   characterShotgunMoveAnimation = loadImage('assets/characterShotgunMove.gif');
   characterShotgunIdleAnimation = loadImage('assets/characterShotgunIdle.png');
   //bigBox = loadImage('Box.png') 
+  mySound = loadSound('assets/Cyberpunk.mp3');
 }
 
 
@@ -28,7 +29,7 @@ function preload() {
 
 let character
 let player
-let enemy
+let enemies = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -38,8 +39,8 @@ function setup() {
   //requestPointerLock()
   //character = new Character()
   player = new Player()
-  enemy = new Enemy()
-  mySound.play();
+  append(enemies, new Enemy())
+  //mySound.play();
 }
 
 function draw() {
@@ -52,8 +53,15 @@ function draw() {
   player.direction()
   player.movePlayer(65,68, 87,83)
   player.handleBullets()
-  enemy.noticePlayer()
-  enemy.show()
+  player.showHitbox("blue")
+
+  for (let i = 0; i < enemies.length; i++) {
+    enemies[i].noticePlayer()
+    enemies[i].show()
+    enemies[i].showHitbox("red")
+  }
+
+  
   //console.log(enemy.angle)
   //console.log(player.angle)
   //saveGif(playerShotgunMove, 100)
@@ -62,9 +70,16 @@ function draw() {
 
 
 function mousePressed() {
-  player.shoot()
-  console.log("bullet angle: "  + player.existingBullets[0].angle)
-  console.log("player angle " + player.angle)
+
+  if (player.shootingCooldown > 0) {
+    return;
+  }
+
+  if (player.ammo > 0) {
+    player.shoot()
+    player.ammo--;
+  }
+  
 }
 
 
