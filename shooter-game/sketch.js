@@ -20,7 +20,7 @@ function preload() {
   //song=loadSound('assets/backgroundMusic.mp3')
   characterShotgunMoveAnimation = loadImage('assets/characterShotgunMove.gif');
   characterShotgunIdleAnimation = loadImage('assets/characterShotgunIdle.png');
-  bigBox = loadImage('Box.JPEG') 
+  //bigBox = loadImage('Box.png') 
 }
 
 

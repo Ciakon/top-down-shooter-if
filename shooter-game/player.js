@@ -15,7 +15,6 @@ class Player extends Character {
         let c = sqrt(Dx ** 2 + Dy ** 2);
         this.angle = acos(-Dx / c);
         //line(mouseX, mouseY, this.position.x, this.position.y)
-        
     }
 
     movePlayer(Left, Right, Up, Down) {
@@ -42,6 +41,7 @@ class Player extends Character {
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
         pop()
     }
+
     ui(){
         noFill();
         rect(10, 10, this.maxHealth, 25);
@@ -57,5 +57,5 @@ class Player extends Character {
 }
 
 function mousePressed() {
-    player.shoot()
+    //player.shoot()
 }
