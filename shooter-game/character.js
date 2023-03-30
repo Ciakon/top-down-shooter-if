@@ -1,12 +1,14 @@
 class Character {
 
   constructor() {
-    this.position = createVector(windowWidth/2, windowHeight/2)
+    this.position = {x: windowWidth/2, y : windowHeight / 2}
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
     this.weapon = "pistol"
     this.existingBullets = [];
+    this.maxHealth = 100;
+    this.Health = 80;
   }
 
   show() {
@@ -50,21 +52,19 @@ class Character {
 
   shoot() {
     if (this.weapon == "pistol") {
-      //this.existingBullets += new Bullet(this.positionX, this.positionY, this.angle, 5)
+      append(this.existingBullets, new Bullet(this.position.x, this.position.y, this.angle, 7))
     }
-
-    console.log(player.position.x, player.position.y)
-
   }
 
   handleBullets() {
     for (let i = 0; i < this.existingBullets.length; i++) {
       push()
-      translate(this.existingBullets[i].positionX, this.existingBullets[i].positionY)
-      rect(0, 0, 500, 20)
-      pop()
+      translate(this.existingBullets[i].position.x, this.existingBullets[i].position.y)
+      rect(0, 0, 20, 10)
 
-      //this.existingBullets[i].positionX++;
+      this.existingBullets[i].position.x += cos(this.existingBullets[i].angle) * this.existingBullets[i].speed;
+      this.existingBullets[i].position.y -= sin(this.existingBullets[i].angle) * this.existingBullets[i].speed;
+      pop()
 
     }
 
@@ -76,8 +76,7 @@ class Character {
 
 class Bullet {
   constructor(posX, posY, angle, speed) {
-    this.positionX = posX
-    this.positionY = posY
+    this.position = {x: posX, y: posY}
     this.speed = speed;
     this.angle = angle
   }

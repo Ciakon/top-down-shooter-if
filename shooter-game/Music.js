@@ -1,7 +1,9 @@
-let soundFile;
+let mySound;
 
 function preload() {
-  soundFormats('mp3', 'ogg');
-  soundFile = loadSound('path/to/your/Cyberpunk.mp3');
+  mySound = loadSound('assets/Cyberpunk.mp3');
 }
 
+function setup(){
+  mySound.play();
+}

@@ -4,8 +4,6 @@
 class Player extends Character {
     constructor() {
         super();
-        this.maxHealth = 100;
-        this.Health = 80;
         this.ammo=10
     }
 
@@ -32,11 +30,11 @@ class Player extends Character {
     }
 
     show() {
-        push()
-        translate(this.position.x, this.position.y)
         if(mouseY<this.position.y){
             this.angle*=-1
         }
+        push()
+        translate(this.position.x, this.position.y)
         rotate(player.angle)
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
         pop()
@@ -44,15 +42,20 @@ class Player extends Character {
 
     ui(){
         noFill();
-        rect(10, 10, this.maxHealth, 25);
+        strokeWeight(3)
+        //MaxHealth bar
+        rect(windowWidth/10, windowHeight/25, this.maxHealth, 25);
         fill("Red");
-        noStroke();
-        rect(10, 10, this.Health, 25);
+        //Current Health
+        rect(windowWidth/10-(this.maxHealth-this.Health)/2, windowHeight/25, this.Health, 25);
         fill("Gold");
         stroke("black");
-        rect(this.maxHealth + 20,10,10,25);
+        //Ammo indicator
+        rect(this.maxHealth/2+windowWidth/10+15,windowHeight/25,10,25);
         fill("black")
-        text("x" + this.ammo,this.maxHealth +35,25)
+        strokeWeight(1)
+        //Ammo counter
+        text("x" + this.ammo,this.maxHealth/2+windowWidth/10+15+10,25)
     }
 }
 

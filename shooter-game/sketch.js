@@ -28,6 +28,7 @@ function preload() {
 
 let character
 let player
+let enemy
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -45,20 +46,26 @@ function draw() {
   
   background(220);
   //console.log(movedX)
-  enemy.noticePlayer()
-  enemy.show()
   player.ui()
   player.show()
   player.move()
   player.direction()
   player.movePlayer(65,68, 87,83)
   player.handleBullets()
-  console.log(enemy.angle)
-  //console.log(player.position.x)
+  enemy.noticePlayer()
+  enemy.show()
+  //console.log(enemy.angle)
+  //console.log(player.angle)
   //saveGif(playerShotgunMove, 100)
+
 }
 
 
+function mousePressed() {
+  player.shoot()
+  console.log("bullet angle: "  + player.existingBullets[0].angle)
+  console.log("player angle " + player.angle)
+}
 
 
 
