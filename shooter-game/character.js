@@ -1,7 +1,7 @@
 class Character {
 
   constructor() {
-    this.position = {x: windowWidth/2, y : windowHeight / 2}
+    this.position = {x: windowWidth/2, y : windowHeight/2}
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
@@ -13,6 +13,9 @@ class Character {
     this.shootingCooldown = 0;
     this.hitbox = [];
     this.generateHitbox()
+    this.ammo=5
+    this.maxAmmo=10
+    this.reloadTime=120;
   }
 
   show() {
@@ -85,6 +88,15 @@ class Character {
 
     }
 
+  }
+
+  reload(){
+    //play animation
+    this.reloadTime--
+    if(this.reloadTime<0){
+      this.reloadTime=600
+      this.ammo+=this.maxAmmo
+    }
   }
 
   generateHitbox() {

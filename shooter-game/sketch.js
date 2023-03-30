@@ -39,7 +39,8 @@ function setup() {
   //requestPointerLock()
   //character = new Character()
   player = new Player()
-  append(enemies, new Enemy())
+  append(enemies, new Enemy(100,100))
+  //append(enemies, new Enemy(300,300))
   //mySound.play();
 }
 
@@ -56,9 +57,10 @@ function draw() {
   player.showHitbox("blue")
 
   for (let i = 0; i < enemies.length; i++) {
-    enemies[i].noticePlayer()
+    enemies[i].AI()
     enemies[i].show()
     enemies[i].showHitbox("red")
+    enemies[i].handleBullets()
   }
 
   

@@ -4,7 +4,7 @@
 class Player extends Character {
     constructor() {
         super();
-        this.ammo=10
+        //this.ammo=10
     }
 
     direction() {
