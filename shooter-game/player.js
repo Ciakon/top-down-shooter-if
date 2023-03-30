@@ -60,6 +60,13 @@ class Player extends Character {
         //Ammo counter
         text("x" + this.ammo,this.maxHealth/2+windowWidth/10+15+10,25)
     }
+    reload(){
+        if(keyCode == 82){
+            if(this.ammo<=0){
+                this.ammo+=this.maxAmmo
+            }
+        }
+    }
 }
 
 function mousePressed() {

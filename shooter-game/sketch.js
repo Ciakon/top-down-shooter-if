@@ -54,6 +54,7 @@ function draw() {
   player.direction()
   player.movePlayer(65,68, 87,83)
   player.handleBullets()
+  player.reload()
   player.showHitbox("blue")
 
   for (let i = 0; i < enemies.length; i++) {
