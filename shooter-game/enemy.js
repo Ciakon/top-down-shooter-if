@@ -14,8 +14,9 @@ class Enemy extends Character {
         let dy = this.position.y - player.position.y;
         let c = sqrt(dx ** 2 + dy ** 2);
         this.angle = 180 - acos(dx / c);
+
         if(player.position.y>this.position.y){
-            this.angle*=-1
+            this.angle= 360 - this.angle;
         }
 
         //When the player enters a certain area, enemy begins shooting
