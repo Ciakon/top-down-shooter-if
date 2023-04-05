@@ -9,20 +9,13 @@ class Enemy extends Character {
     }
 
     AI(){
-        //Enemy uses algebra, to loctate and detect the player.
-        let dx = this.position.x - player.position.x;
-        let dy = this.position.y - player.position.y;
-        let c = sqrt(dx ** 2 + dy ** 2);
-        this.angle = 180 - acos(dx / c);
-
-        if(player.position.y>this.position.y){
-            this.angle= 360 - this.angle;
-        }
-
         //When the player enters a certain area, enemy begins shooting
         if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.shootingDist){
             enemyShoot()
         }
+
+        //Pathfinding
+        
     }
 
 
@@ -34,9 +27,16 @@ class Enemy extends Character {
         stroke("red")
         circle(0,0,this.shootingDist*2)
         if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<250){
-            this.currentAngle=this.angle
+            //Enemy uses algebra, to loctate and detect the player.
+            let dx = this.position.x - player.position.x;
+            let dy = this.position.y - player.position.y;
+            let c = sqrt(dx ** 2 + dy ** 2);
+            this.angle = 180 - acos(dx / c);
+            if(player.position.y>this.position.y){
+                this.angle= 360 - this.angle;
+            }
         }
-        rotate(-this.currentAngle)    
+        rotate(-this.angle)    
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
         pop()
     }
