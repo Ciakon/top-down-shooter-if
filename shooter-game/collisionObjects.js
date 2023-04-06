@@ -20,6 +20,7 @@ class BigIronBox extends CollisionObjects{
     }
     show(){
         fill("white");
+        //change 'rect' to 'image' once image has been added
         rect(this.x, this.y, this.width, this.height);
     }
 }
@@ -31,6 +32,7 @@ class WoodenPlanks extends CollisionObjects{
     }
     show(){
         fill("white");
+        //change 'rect' to 'image' once image has been added
         rect(this.x, this.y, this.width, this.height);
     }
 }
