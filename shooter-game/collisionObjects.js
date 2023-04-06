@@ -1,14 +1,36 @@
 class CollisionObjects{
-    constructor(){
-        this.position = {x : posX, y : posY}
-    }
+  constructor(x, y, scaling = 1) {
+    this.x = x;
+    this.y = y;
+    this.width = 100 * scaling;
+    this.height = 100 * scaling;
+    this.maxHealth = 500;
+    this.hitboxes = [];
+  }
+  show() {
+    fill("white");
+    rect(this.x, this.y, this.width, this.height);
+  }
 }
-
-class BigBox extends CollisionObjects{
-    constructor(){
-        this.position = {x : posX, y : posY}
+class BigIronBox extends CollisionObjects{
+    constructor(x,y,scaling=1) {
+        super(x,y,scaling)
+        this.width = 212 * scaling;
+        this.height = 108 * scaling;
     }
     show(){
-        image(BigBox,80,45);
+        fill("white");
+        rect(this.x, this.y, this.width, this.height);
+    }
+}
+class WoodenPlanks extends CollisionObjects{
+    constructor(x,y,scaling=1){
+        super(x,y,scaling)
+        this.width = 62 * scaling;
+        this.height = 82 * scaling;
+    }
+    show(){
+        fill("white");
+        rect(this.x, this.y, this.width, this.height);
     }
 }
