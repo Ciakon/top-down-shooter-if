@@ -5,11 +5,20 @@ class CollisionObjects{
     this.width = 100 * scaling;
     this.height = 100 * scaling;
     this.maxHealth = 500;
+    this.health = 500;
     this.hitboxes = [];
   }
   show() {
+    noFill();
+    strokeWeight(3)
+    //MaxHealth bar
+    rect(this.position.x, this.position.y-30, this.maxHealth/2, 10);
+    fill("Red");
+    //Current Health
+    rect(this.position.x-(this.maxHealth/2-this.health/2)/2, this.position.y-30, this.health/2, 10);
     fill("white");
     rect(this.x, this.y, this.width, this.height);
+
   }
   generateHitboxes(){
     //the order starts from top left and goes clockwise

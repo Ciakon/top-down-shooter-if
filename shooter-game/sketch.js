@@ -90,7 +90,6 @@ function draw() {
 
 
 function mousePressed() {
-
   if (player.shootingCooldown > 0) {
     return;
   }
@@ -100,8 +99,9 @@ function mousePressed() {
     player.ammo--;
 
   }
-  
 }
+
+
 
 
 

@@ -28,6 +28,13 @@ class Enemy extends Character {
 
 
     show(){
+        noFill();
+        strokeWeight(3)
+        //MaxHealth bar
+        rect(this.position.x, this.position.y-30, this.maxHealth/2, 10);
+        fill("Red");
+        //Current Health
+        rect(this.position.x-(this.maxHealth/2-this.health/2)/2, this.position.y-30, this.health/2, 10);
         push()
         translate(this.position.x, this.position.y)
         noFill()
@@ -67,7 +74,7 @@ function enemyShoot () {
             if (enemies[i].ammo > 0) {
                 enemies[i].shoot()
                 enemies[i].ammo--;
-                print("ammo: "+enemies[i].ammo)
+                //print("ammo: "+enemies[i].ammo)
             }  
             if (enemies[i].ammo <= 0){
                 enemies[i].reload()
