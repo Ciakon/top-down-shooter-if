@@ -11,6 +11,31 @@ class CollisionObjects{
     fill("white");
     rect(this.x, this.y, this.width, this.height);
   }
+  generateHitboxes(){
+    //the order starts from top left and goes clockwise
+    let x1=this.x;
+    let x2=this.x+this.width;
+    let x3=this.x+this.width;
+    let x4=this.x;
+
+    let y1=this.y;
+    let y2=this.y;
+    let y3=this.y+this.height;
+    let y4=this.y+this.height;
+
+    append(this.hitboxes, {x : [x1, x2, x3, x4], y : [y1, y2, y3, y4]})
+  }
+  showHitboxes(){
+    stroke(255,0,0);
+    strokeWeight(2);
+    for (let i = 0; i < this.hitboxes.length; i++) {
+      let hitbox = this.hitboxes[i];
+      line(hitbox.x[0], hitbox.y[0], hitbox.x[1], hitbox.y[1]);
+      line(hitbox.x[1], hitbox.y[1], hitbox.x[2], hitbox.y[2]);
+      line(hitbox.x[2], hitbox.y[2], hitbox.x[3], hitbox.y[3]);
+      line(hitbox.x[3], hitbox.y[3], hitbox.x[0], hitbox.y[0]);
+    }
+  }
 }
 class BigIronBox extends CollisionObjects{
     constructor(x,y,scaling=1) {
@@ -19,9 +44,7 @@ class BigIronBox extends CollisionObjects{
         this.height = 108 * scaling;
     }
     show(){
-        fill("white");
-        //change 'rect' to 'image' once image has been added
-        rect(this.x, this.y, this.width, this.height);
+        image(bigIronBox,this.x, this.y, this.width, this.height);
     }
 }
 class WoodenPlanks extends CollisionObjects{
@@ -31,8 +54,6 @@ class WoodenPlanks extends CollisionObjects{
         this.height = 82 * scaling;
     }
     show(){
-        fill("white");
-        //change 'rect' to 'image' once image has been added
-        rect(this.x, this.y, this.width, this.height);
+        image(woodenPlanks,this.x, this.y, this.width, this.height);
     }
 }
