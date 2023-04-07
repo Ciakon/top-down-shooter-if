@@ -15,6 +15,14 @@ class Enemy extends Character {
         }
 
         //Pathfinding
+        let a = (this.position.y+player.position.y)/(this.position.x+player.position.x)
+        let b =this.position.y-a*this.position.x
+
+        if(()){
+
+        }
+
+        line(this.position.x,this.position.y,player.position.x,player.position.y)
         
     }
 
