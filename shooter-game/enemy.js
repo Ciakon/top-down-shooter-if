@@ -18,7 +18,7 @@ class Enemy extends Character {
         let a = (this.position.y+player.position.y)/(this.position.x+player.position.x)
         let b =this.position.y-a*this.position.x
 
-        if(()){
+        if((a*this.position.x+b)==1){
 
         }
 
