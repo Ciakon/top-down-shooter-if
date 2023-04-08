@@ -38,7 +38,6 @@ function setup() {
   append(collisionObjects,box1 = new BigIronBox(600,200));
   append(collisionObjects,box2= new WoodenPlanks(500,200));
   angleMode(DEGREES);
-  imageMode(CENTER);
   rectMode(CENTER);
   //requestPointerLock()
   //character = new Character()
@@ -62,6 +61,7 @@ function draw() {
   box2.generateHitboxes();
   box2.showHitboxes();
   pop();
+  imageMode(CENTER);
   player.ui();
   player.show();
   player.move();
