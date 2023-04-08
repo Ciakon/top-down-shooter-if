@@ -54,7 +54,7 @@ function draw() {
   background(220);
   //console.log(movedX)
   push();
-  imageMode(CORNER)
+  imageMode(CORNER);
   box1.show();
   box1.showHitboxes();
   box2.show();
