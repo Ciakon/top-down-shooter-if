@@ -7,6 +7,7 @@ class CollisionObjects{
     this.health = 500;
     this.hitboxes = [];
   }
+
   show() {
     noFill();
     strokeWeight(3)
@@ -19,6 +20,7 @@ class CollisionObjects{
     rect(this.x, this.y, this.width, this.height);
 
   }
+
   generateHitboxes(){
     //the order starts from top left and goes clockwise
     let x1=this.position.x;
@@ -32,7 +34,9 @@ class CollisionObjects{
     let y4=this.position.y+this.height;
 
     append(this.hitboxes, {x : [x1, x2, x3, x4], y : [y1, y2, y3, y4]})
+
   }
+
   showHitboxes(){
     stroke(255,0,0);
     strokeWeight(2);
@@ -45,6 +49,7 @@ class CollisionObjects{
     }
   }
 }
+
 class BigIronBox extends CollisionObjects{
     constructor(x,y,scaling=1) {
         super(x,y,scaling)
@@ -55,6 +60,7 @@ class BigIronBox extends CollisionObjects{
         image(bigIronBox,this.x, this.y, this.width, this.height);
     }
 }
+
 class WoodenPlanks extends CollisionObjects{
     constructor(x,y,scaling=1){
         super(x,y,scaling)
