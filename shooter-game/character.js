@@ -123,6 +123,16 @@ class Character {
 
       if (this.existingBullets[i].collisionCheck()) {
         this.existingBullets.splice(i, 1);
+        i--;
+        continue
+      }
+
+      this.existingBullets[i].bulltetTimer--;
+
+      if (this.existingBullets[i].bulltetTimer <= 0) {
+        this.existingBullets.splice(i, 1)
+        i--;
+        continue
       }
 
     }
@@ -199,9 +209,11 @@ class Bullet {
     this.damage = damage;
     this.size = size;
     this.collisionPoints;
+    this.bulltetTimer = 60;
   }
 
   collisionCheck() {
+    let collision = false;
 
     //let angle = this.angle + atan((h1/2) / (w1/2))
     //let length = sqrt((w1/2)**2 + (h1/2)**2)
@@ -223,8 +235,6 @@ class Bullet {
       for (let j = 0; j < characters[i].hitboxes.length; j++) {
 
         for (let k = 0; k < this.collisionPoints.length; k++) {
-
-          let collision = false;
 
           let bX = this.collisionPoints[k].x
           let bY = this.collisionPoints[k].y
@@ -283,6 +293,26 @@ class Bullet {
         }
       }
 
+    }
+
+    // box collision
+    for (let i = 0; i < this.collisionPoints.length; i++) {
+      for (let j = 0; j < collisionObjects.length; j++) {
+
+        let bulletX = this.collisionPoints[i].x
+        let bulletY = this.collisionPoints[i].y
+       
+        let boxX = collisionObjects[j].position.x
+        let boxY = collisionObjects[j].position.y
+        let boxW = collisionObjects[j].width
+        let boxH = collisionObjects[j].height
+
+        if ((bulletX > boxX - boxW/2 && bulletX < boxX + boxW/2) && bulletY > boxY - boxH/2 && bulletY < boxY + boxH/2) {
+          collisionObjects[j].health -= this.damage;
+          return true;
+        }
+
+      }
     }
 
   }

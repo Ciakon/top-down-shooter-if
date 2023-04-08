@@ -4,7 +4,8 @@ let characterSize = 50;
 
 let characterShotgunMoveAnimation;
 let characterShotgunIdleAnimation;
-
+let bigIronBox
+let woodenPlanks
 let song;
 
 function preload() {
@@ -44,10 +45,6 @@ function draw() {
   background(220);
   //console.log(movedX)
   imageMode(CENTER);
-  box1.show();
-  box1.showHitboxes();
-  box2.show();
-  box2.showHitboxes();
   player.ui();
   player.show();
   player.move();
@@ -64,11 +61,19 @@ function draw() {
     enemies[i].generateHitboxes();
     enemies[i].showHitboxes("red");
     enemies[i].handleBullets();
+    if (enemies[i].death()) {
+      enemies.splice(i, 1)
+    }
   }
 
-  //console.log(enemy.angle)
-  //console.log(player.angle)
-  //saveGif(playerShotgunMove, 100)
+  for (let i = 0; i < collisionObjects.length; i++) {
+    collisionObjects[i].show()
+    collisionObjects[i].showHitboxes()
+    if (collisionObjects[i].death()) {
+      collisionObjects.splice(i, 1)
+      i--;
+    }
+  }
 }
 
 function mousePressed() {

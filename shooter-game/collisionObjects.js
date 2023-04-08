@@ -3,26 +3,31 @@ class CollisionObjects {
     this.position = { x: x, y: y };
     this.width = 100 * scaling;
     this.height = 100 * scaling;
-    this.maxHealth = 500;
-    this.health = 500;
+    this.maxHealth = 200;
+    this.health = 200;
     this.hitboxes = [];
+    this.image = bigIronBox;
   }
 
+  death() {
+    if (this.health <= 0) {
+        return true;
+    }
+  }
+  
   show() {
-    noFill();
-    strokeWeight(3);
-    //MaxHealth bar
-    rect(this.position.x, this.position.y - 30, this.maxHealth / 2, 10);
-    fill("Red");
-    //Current Health
-    rect(
-      this.position.x - (this.maxHealth / 2 - this.health / 2) / 2,
-      this.position.y - 30,
-      this.health / 2,
-      10
-    );
-    fill("white");
-    rect(this.x, this.y, this.width, this.height);
+
+    push()
+    strokeWeight(3)
+    let healthbarSize = this.width*0.8;
+        //MaxHealth bar
+        rectMode(CORNER)
+        rect(this.position.x - healthbarSize/2, this.position.y-this.height*0.8, healthbarSize, 10);
+        fill("Red");
+        //Current Health
+        rect(this.position.x - healthbarSize/2, this.position.y-this.height*0.8, healthbarSize*this.health/this.maxHealth, 10)
+    image(this.image,this.position.x,this.position.y,this.width,this.height)
+    pop()
   }
 
   generateHitboxes(){
@@ -42,6 +47,7 @@ class CollisionObjects {
   }
 
   showHitboxes(){
+    push()
     stroke(255,0,0);
     strokeWeight(2);
     for (let i = 0; i < this.hitboxes.length; i++) {
@@ -51,6 +57,7 @@ class CollisionObjects {
       line(hitbox.x[2], hitbox.y[2], hitbox.x[3], hitbox.y[3]);
       line(hitbox.x[3], hitbox.y[3], hitbox.x[0], hitbox.y[0]);
     }
+    pop()
   }
 }
 
@@ -60,9 +67,6 @@ class BigIronBox extends CollisionObjects{
         this.width = 212 * scaling;
         this.height = 108 * scaling;
     }
-    show(){
-        image(bigIronBox,this.x, this.y, this.width, this.height);
-    }
 }
 
 class WoodenPlanks extends CollisionObjects{
@@ -70,8 +74,6 @@ class WoodenPlanks extends CollisionObjects{
         super(x,y,scaling)
         this.width = 62 * scaling;
         this.height = 82 * scaling;
-    }
-    show(){
-        image(woodenPlanks,this.x, this.y, this.width, this.height);
+        this.image = woodenPlanks
     }
 }

@@ -44,6 +44,7 @@ class Player extends Character {
     }
 
     ui(){
+        push()
         noFill();
         strokeWeight(3)
         //MaxHealth bar
@@ -59,6 +60,7 @@ class Player extends Character {
         strokeWeight(1)
         //Ammo counter
         text("x" + this.ammo,this.maxHealth/2+windowWidth/10+15+10,25)
+        pop()
     }
     reload(){
         if(keyCode == 82){
