@@ -46,6 +46,7 @@ function setup() {
   append(enemies, new Enemy(100,100));
   enemies[0].position.x = 300;
   enemies[0].position.y = 300;
+  box1.generateHitboxes();
   //append(enemies, new Enemy(300,300))
   //mySound.play();
 }
@@ -56,9 +57,7 @@ function draw() {
   push();
   imageMode(CORNER)
   box1.show();
-  console.log(box1.hitboxes);
   box1.showHitboxes();
-  box1.generateHitboxes();
   box2.show();
   box2.generateHitboxes();
   box2.showHitboxes();

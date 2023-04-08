@@ -1,7 +1,6 @@
 class CollisionObjects{
   constructor(x, y, scaling = 1) {
-    this.x = x;
-    this.y = y;
+    this.position = {x: x, y : y}
     this.width = 100 * scaling;
     this.height = 100 * scaling;
     this.maxHealth = 500;
@@ -22,15 +21,15 @@ class CollisionObjects{
   }
   generateHitboxes(){
     //the order starts from top left and goes clockwise
-    let x1=this.x;
-    let x2=this.x+this.width;
-    let x3=this.x+this.width;
-    let x4=this.x;
+    let x1=this.position.x;
+    let x2=this.position.x+this.width;
+    let x3=this.position.x+this.width;
+    let x4=this.position.x;
 
-    let y1=this.y;
-    let y2=this.y;
-    let y3=this.y+this.height;
-    let y4=this.y+this.height;
+    let y1=this.position.y;
+    let y2=this.position.y;
+    let y3=this.position.y+this.height;
+    let y4=this.position.y+this.height;
 
     append(this.hitboxes, {x : [x1, x2, x3, x4], y : [y1, y2, y3, y4]})
   }
