@@ -35,29 +35,72 @@ class Enemy extends Character {
             y2[i]=collisionObjects[i].position.y+collisionObjects[i].height/2
             for(let j=0;j<enemies.length;j++){
                 if(player.position.x>enemies[j].position.x){
+                    if(player.position.x>((y1[i]-b)/a)){
+                        if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
+                            circle((y1[i]-b)/a,y1[i],25)
+                            this.path=false
+                        } 
+                    }
+                    if(player.position.x>x1[i]){
+                        if((a*x1[i]+b)<y2[i] && (a*x1[i]+b)>y1[i]){
+                            circle(x1[i],(a*x1[i]+b),25)
+                            this.path=false
+                        } 
+                    }
+                    if(player.position.x>((y2[i]-b)/a)){
+                        if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
+                            circle((y2[i]-b)/a,y2[i],25)
+                            this.path=false
+                        } 
+                    } 
+                    if(player.position.x>x2[i]){
+                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]) {
+                            circle(x2[i],(a*x2[i]+b),25)
+                            this.path=false
+                        } 
+                    }
+                }
+                
+                
+                
+                
+                
+                
+                
+                /*
+                //HØJRE SIDE
+                if(player.position.x>enemies[j].position.x){
                     if(player.position.x>this.position.x && player.position.x>x1[i]){
                         if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
                             circle((y1[i]-b)/a,y1[i],25)
+                            this.path=false
+                        } else {
+                            this.path=true
                         }
                         if((a*x1[i]+b)<y2[i] && (a*x1[i]+b)>y1[i]){
                             circle(x1[i],(a*x1[i]+b),25)
-                        }
-                        this.path=false
+                            this.path=false
+                        } 
                     } else {
                         this.path=true
                     }
-                    if(player.position.x>this.position.x && player.position.x>x2[i]){
+                    if(player.position.x>this.position.x && player.position.x>x2[i]) {
                         if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
                             circle((y2[i]-b)/a,y2[i],25)
-                        }
-                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]){
+                            this.path=false
+                        } 
+                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]) {
                             circle(x2[i],(a*x2[i]+b),25)
-                        }
-                        this.path=false
+                            this.path=false
+                        } 
                     } else {
                         this.path=true
                     }
                 }
+               
+
+
+                //VENSTRE SIDE
                 if(player.position.x<enemies[j].position.x){
                     if(player.position.x<this.position.x && player.position.x<x1[i] || player.position.y>y1[i]){
                         if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
@@ -70,7 +113,7 @@ class Enemy extends Character {
                     } else {
                         this.path=true
                     }
-                    if(player.position.x<this.position.x && player.position.x<x2[i]){
+                    if(player.position.x<this.position.x && player.position.x<x2[i] && player.position.y<y2[i]){
                         if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
                             circle((y2[i]-b)/a,y2[i],25)
                         }
@@ -82,6 +125,7 @@ class Enemy extends Character {
                         this.path=true
                     }
                 }
+                */
             }
 
 
@@ -95,7 +139,7 @@ class Enemy extends Character {
 
         line(this.position.x,this.position.y,player.position.x,player.position.y)
         if(this.path==true){
-            this.position.x+=1
+            this.position.x+=0
             print("Walk?")
         }
     }

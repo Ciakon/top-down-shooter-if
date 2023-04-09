@@ -22,21 +22,23 @@ let character;
 let player;
 let enemies = [];
 let collisionObjects = [];
-
+let box3;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   rectMode(CENTER);
-  append(collisionObjects, (box1 = new BigIronBox(700, 200)));
+  append(collisionObjects, (box1 = new BigIronBox(700, 201)));
   append(collisionObjects, (box2 = new WoodenPlanks(500, 200)));
+  append(collisionObjects, (box3 = new BigIronBox(600, 700)));
   box1.generateHitboxes();
   box2.generateHitboxes();
+  box3.generateHitboxes();
   //requestPointerLock()
   //character = new Character()
   player = new Player();
   append(enemies, new Enemy(100, 100));
   enemies[0].position.x = 300;
-  enemies[0].position.y = 300;
+  enemies[0].position.y = 200;
   //append(enemies, new Enemy(300,300))
   //mySound.play();
 }
@@ -54,6 +56,10 @@ function draw() {
   player.reload();
   player.generateHitboxes();
   player.showHitboxes("blue");
+
+  //test
+  rect(469,200,10,10)
+
 
   for (let i = 0; i < enemies.length; i++) {
     enemies[i].AI();
