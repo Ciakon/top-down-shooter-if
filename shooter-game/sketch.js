@@ -29,10 +29,10 @@ function setup() {
   rectMode(CENTER);
   append(collisionObjects, (box1 = new BigIronBox(700, 201)));
   append(collisionObjects, (box2 = new WoodenPlanks(500, 200)));
-  append(collisionObjects, (box3 = new BigIronBox(600, 700)));
+  //append(collisionObjects, (box3 = new BigIronBox(600, 700)));
   box1.generateHitboxes();
   box2.generateHitboxes();
-  box3.generateHitboxes();
+  //box3.generateHitboxes();
   //requestPointerLock()
   //character = new Character()
   player = new Player();

@@ -28,6 +28,18 @@ class Enemy extends Character {
         let x2=[]
         let y1=[]
         let y2=[]
+        let obstructionsx1 = []
+        let obstructionsx2 = []
+        let obstructionsy1 = []
+        let obstructionsy2 = []
+        
+        for(let i=0;i<collisionObjects.length;i++){
+            append(obstructionsx1, false)
+            append(obstructionsx2, false)
+            append(obstructionsy1, false)
+            append(obstructionsy2, false)
+        }
+        
         for(let i=0;i<collisionObjects.length;i++){
             x1[i]=collisionObjects[i].position.x-collisionObjects[i].width/2
             x2[i]=collisionObjects[i].position.x+collisionObjects[i].width/2
@@ -36,96 +48,81 @@ class Enemy extends Character {
             for(let j=0;j<enemies.length;j++){
                 if(player.position.x>enemies[j].position.x){
                     if(player.position.x>((y1[i]-b)/a)){
-                        if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
+                        if((y1[i]-b)/a < x2[i] && (y1[i]-b)/a > x1[i]){
+                            fill("red")
                             circle((y1[i]-b)/a,y1[i],25)
-                            this.path=false
+                            obstructionsx1[i]=true
+                        } 
+                        if((y1[i]-b)/a > x2[i] || (y1[i]-b)/a < x1[i]){
+                            fill("green")
+                            circle((y1[i]-b)/a,y1[i],25)
+                            obstructionsx1[i]=false
                         } 
                     }
                     if(player.position.x>x1[i]){
-                        if((a*x1[i]+b)<y2[i] && (a*x1[i]+b)>y1[i]){
+                        if((a*x1[i]+b) < y2[i] && (a*x1[i]+b) > y1[i]){
+                            fill("blue")
                             circle(x1[i],(a*x1[i]+b),25)
-                            this.path=false
+                            obstructionsy1[i]=true
                         } 
+                        if((a*x1[i]+b) > y2[i] || (a*x1[i]+b) < y1[i]){
+                            fill("green")
+                            circle(x1[i],(a*x1[i]+b),25)
+                            obstructionsy1[i]=false
+                        }
                     }
                     if(player.position.x>((y2[i]-b)/a)){
                         if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
-                            circle((y2[i]-b)/a,y2[i],25)
-                            this.path=false
+                            fill("blue")
+                            circle((y2[i]-b)/a,y2[i],25)  
+                            obstructionsx2[i]=true
+                        } 
+                        if((y2[i]-b)/a > x2[i] || (y2[i]-b)/a < x1[i]){
+                            fill("green")
+                            circle((y2[i]-b)/a,y2[i],25)  
+                            obstructionsx2[i]=false
                         } 
                     } 
                     if(player.position.x>x2[i]){
-                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]) {
+                        if((a*x2[i]+b) < y2[i] && (a*x2[i]+b) > y1[i]) {
+                            fill("blue")
                             circle(x2[i],(a*x2[i]+b),25)
-                            this.path=false
+                            obstructionsy2[i]=true
                         } 
-                    }
-                }
-                
-                
-                
-                
-                
-                
-                
-                /*
-                //HØJRE SIDE
-                if(player.position.x>enemies[j].position.x){
-                    if(player.position.x>this.position.x && player.position.x>x1[i]){
-                        if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
-                            circle((y1[i]-b)/a,y1[i],25)
-                            this.path=false
-                        } else {
-                            this.path=true
+                        if((a*x2[i]+b) > y2[i] || (a*x2[i]+b) < y1[i]){
+                            fill("green")
+                            circle(x2[i],(a*x2[i]+b),25)
+                            obstructionsy2[i]=false
                         }
-                        if((a*x1[i]+b)<y2[i] && (a*x1[i]+b)>y1[i]){
-                            circle(x1[i],(a*x1[i]+b),25)
-                            this.path=false
-                        } 
-                    } else {
-                        this.path=true
-                    }
-                    if(player.position.x>this.position.x && player.position.x>x2[i]) {
-                        if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
-                            circle((y2[i]-b)/a,y2[i],25)
-                            this.path=false
-                        } 
-                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]) {
-                            circle(x2[i],(a*x2[i]+b),25)
-                            this.path=false
-                        } 
-                    } else {
-                        this.path=true
                     }
                 }
-               
+                
+
+                
+                
+                
+                
+                
+                if(obstructionsx1.includes(true)==true){
+                    this.path=false
+                    print("false")
+                }
+                if(obstructionsx1.includes(true)==false){
+                    this.path=true
+                    print("true")
+                }
 
 
-                //VENSTRE SIDE
-                if(player.position.x<enemies[j].position.x){
-                    if(player.position.x<this.position.x && player.position.x<x1[i] || player.position.y>y1[i]){
-                        if((y1[i]-b)/a<x2[i] && (y1[i]-b)/a > x1[i]){
-                            circle((y1[i]-b)/a,y1[i],25)
-                        }
-                        if((a*x1[i]+b)<y2[i] && (a*x1[i]+b)>y1[i]){
-                            circle(x1[i],(a*x1[i]+b),25)
-                        }
-                        this.path=false
-                    } else {
-                        this.path=true
-                    }
-                    if(player.position.x<this.position.x && player.position.x<x2[i] && player.position.y<y2[i]){
-                        if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
-                            circle((y2[i]-b)/a,y2[i],25)
-                        }
-                        if((a*x2[i]+b)<y2[i] && (a*x2[i]+b)>y1[i]){
-                            circle(x2[i],(a*x2[i]+b),25)
-                        }
-                        this.path=false
-                    } else {
-                        this.path=true
-                    }
+
+                
+                if(obstructionsx2.includes(true)==true){
+                    this.path=false
+                    
+                } 
+                if(obstructionsx2.includes(true)==false){
+                    this.path=true
                 }
-                */
+                
             }
 
 
@@ -136,12 +133,9 @@ class Enemy extends Character {
             
             
         }
-
+        //print(this.path)
         line(this.position.x,this.position.y,player.position.x,player.position.y)
-        if(this.path==true){
-            this.position.x+=0
-            print("Walk?")
-        }
+        
     }
 
 
