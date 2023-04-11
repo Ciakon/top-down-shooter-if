@@ -1,5 +1,5 @@
 class Enemy extends Character {
-    constructor(x=windowWidth/2,y=windowHeight/2) {
+    constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun") {
         super()
         this.position = {x: x, y : y}
         this.health = 50;
@@ -7,6 +7,7 @@ class Enemy extends Character {
         this.detectRange=250
         this.shootingDist=this.detectRange*(3/4)
         this.path=true
+        this.weapon = weapon;
     }
 
     death() {

@@ -36,9 +36,8 @@ function setup() {
   //requestPointerLock()
   //character = new Character()
   player = new Player();
-  append(enemies, new Enemy(100, 100));
-  enemies[0].position.x = 300;
-  enemies[0].position.y = 200;
+  //append(enemies, new Enemy(100, 100));
+
   //append(enemies, new Enemy(300,300))
   //mySound.play();
 }
@@ -58,8 +57,7 @@ function draw() {
   player.showHitboxes("blue");
 
   //test
-  rect(469,200,10,10)
-
+  waveManager()
 
   for (let i = 0; i < enemies.length; i++) {
     enemies[i].AI();
