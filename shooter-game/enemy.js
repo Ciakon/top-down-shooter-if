@@ -1,13 +1,14 @@
 class Enemy extends Character {
-    constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun") {
+    constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun", maxAmmo = 10) {
         super()
         this.position = {x: x, y : y}
         this.health = 50;
         this.maxHealth = 50;
-        this.detectRange=250
+        this.detectRange=1000
         this.shootingDist=this.detectRange*(3/4)
         this.path=true
         this.weapon = weapon;
+        this.maxAmmo = maxAmmo
     }
 
     death() {
@@ -15,12 +16,10 @@ class Enemy extends Character {
             return true;
         }
     }
-
+ 
     AI(){
+        this.path = true;
         //When the player enters a certain area, enemy begins shooting
-        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.shootingDist){
-            enemyShoot()
-        }
 
         //Pathfinding
         let a = (this.position.y-player.position.y)/(this.position.x-player.position.x)
@@ -39,105 +38,153 @@ class Enemy extends Character {
             append(obstructionsx2, false)
             append(obstructionsy1, false)
             append(obstructionsy2, false)
+            
         }
+        
         
         for(let i=0;i<collisionObjects.length;i++){
             x1[i]=collisionObjects[i].position.x-collisionObjects[i].width/2
             x2[i]=collisionObjects[i].position.x+collisionObjects[i].width/2
             y1[i]=collisionObjects[i].position.y-collisionObjects[i].height/2
             y2[i]=collisionObjects[i].position.y+collisionObjects[i].height/2
-            for(let j=0;j<enemies.length;j++){
-                if(player.position.x>enemies[j].position.x){
-                    if(player.position.x>((y1[i]-b)/a)){
-                        if((y1[i]-b)/a < x2[i] && (y1[i]-b)/a > x1[i]){
-                            fill("red")
-                            circle((y1[i]-b)/a,y1[i],25)
-                            obstructionsx1[i]=true
-                        } 
-                        if((y1[i]-b)/a > x2[i] || (y1[i]-b)/a < x1[i]){
-                            fill("green")
-                            circle((y1[i]-b)/a,y1[i],25)
-                            obstructionsx1[i]=false
-                        } 
-                    }
-                    if(player.position.x>x1[i]){
-                        if((a*x1[i]+b) < y2[i] && (a*x1[i]+b) > y1[i]){
-                            fill("blue")
-                            circle(x1[i],(a*x1[i]+b),25)
-                            obstructionsy1[i]=true
-                        } 
-                        if((a*x1[i]+b) > y2[i] || (a*x1[i]+b) < y1[i]){
-                            fill("green")
-                            circle(x1[i],(a*x1[i]+b),25)
-                            obstructionsy1[i]=false
-                        }
-                    }
-                    if(player.position.x>((y2[i]-b)/a)){
-                        if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
-                            fill("blue")
-                            circle((y2[i]-b)/a,y2[i],25)  
-                            obstructionsx2[i]=true
-                        } 
-                        if((y2[i]-b)/a > x2[i] || (y2[i]-b)/a < x1[i]){
-                            fill("green")
-                            circle((y2[i]-b)/a,y2[i],25)  
-                            obstructionsx2[i]=false
-                        } 
+            if(player.position.x>this.position.x){
+                let x = (y1[i]-b)/a
+                if(player.position.x > x){
+                    if(x < x2[i] && x > x1[i]){
+                        fill("red")
+                        circle(x, y1[i], 25)
+                        obstructionsx1[i]=true
                     } 
-                    if(player.position.x>x2[i]){
-                        if((a*x2[i]+b) < y2[i] && (a*x2[i]+b) > y1[i]) {
-                            fill("blue")
-                            circle(x2[i],(a*x2[i]+b),25)
-                            obstructionsy2[i]=true
-                        } 
-                        if((a*x2[i]+b) > y2[i] || (a*x2[i]+b) < y1[i]){
-                            fill("green")
-                            circle(x2[i],(a*x2[i]+b),25)
-                            obstructionsy2[i]=false
-                        }
+                    if(x > x2[i] || x < x1[i]){
+                        fill("green")
+                        circle(x,y1[i],25)
+                        obstructionsx1[i]=false
+                    } 
+                }
+                if(player.position.x>x1[i]){
+                    if((a*x1[i]+b) < y2[i] && (a*x1[i]+b) > y1[i]){
+                        fill("blue")
+                        circle(x1[i],(a*x1[i]+b),25)
+                        obstructionsy1[i]=true
+                    } 
+                    if((a*x1[i]+b) > y2[i] || (a*x1[i]+b) < y1[i]){
+                        fill("green")
+                        circle(x1[i],(a*x1[i]+b),25)
+                        obstructionsy1[i]=false
                     }
                 }
-                
-
-                
-                
-                
-                
-                
-                if(obstructionsx1.includes(true)==true){
-                    this.path=false
-                    print("false")
-                }
-                if(obstructionsx1.includes(true)==false){
-                    this.path=true
-                    print("true")
-                }
-
-
-
-                
-                if(obstructionsx2.includes(true)==true){
-                    this.path=false
-                    
+                if(player.position.x>((y2[i]-b)/a)){
+                    if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
+                        fill("blue")
+                        circle((y2[i]-b)/a,y2[i],25)  
+                        obstructionsx2[i]=true
+                    } 
+                    if((y2[i]-b)/a > x2[i] || (y2[i]-b)/a < x1[i]){
+                        fill("green")
+                        circle((y2[i]-b)/a,y2[i],25)  
+                        obstructionsx2[i]=false
+                    } 
                 } 
-                if(obstructionsx2.includes(true)==false){
-                    this.path=true
+                if(player.position.x>x2[i]){
+                    if((a*x2[i]+b) < y2[i] && (a*x2[i]+b) > y1[i]) {
+                        fill("blue")
+                        circle(x2[i],(a*x2[i]+b),25)
+                        obstructionsy2[i]=true
+                    } 
+                    if((a*x2[i]+b) > y2[i] || (a*x2[i]+b) < y1[i]){
+                        fill("green")
+                        circle(x2[i],(a*x2[i]+b),25)
+                        obstructionsy2[i]=false
+                    }
+                }
+            }
+            
+
+            
+            
+            if(player.position.x<this.position.x){
+                let x = (y1[i]-b)/a
+                if(player.position.x < x){
+                    if(x < x2[i] && x > x1[i]){
+                        fill("red")
+                        circle(x, y1[i], 25)
+                        obstructionsx1[i]=true
+                    } 
+                    if(x > x2[i] || x < x1[i]){
+                        fill("green")
+                        circle(x,y1[i],25)
+                        obstructionsx1[i]=false
+                    } 
                 }
                 
+
+                if(player.position.x<x1[i]){
+                    if((a*x1[i]+b) < y2[i] && (a*x1[i]+b) > y1[i]){
+                        fill("blue")
+                        circle(x1[i],(a*x1[i]+b),25)
+                        obstructionsy1[i]=true
+                    } 
+                    if((a*x1[i]+b) > y2[i] || (a*x1[i]+b) < y1[i]){
+                        fill("green")
+                        circle(x1[i],(a*x1[i]+b),25)
+                        obstructionsy1[i]=false
+                    }
+                }
+                if(player.position.x<((y2[i]-b)/a)){
+                    if((y2[i]-b)/a<x2[i] && (y2[i]-b)/a > x1[i]){
+                        fill("blue")
+                        circle((y2[i]-b)/a,y2[i],25)  
+                        obstructionsx2[i]=true
+                    } 
+                    if((y2[i]-b)/a > x2[i] || (y2[i]-b)/a < x1[i]){
+                        fill("green")
+                        circle((y2[i]-b)/a,y2[i],25)  
+                        obstructionsx2[i]=false
+                    } 
+                } 
+                if(player.position.x<x2[i]){
+                    if((a*x2[i]+b) < y2[i] && (a*x2[i]+b) > y1[i]) {
+                        fill("blue")
+                        circle(x2[i],(a*x2[i]+b),25)
+                        obstructionsy2[i]=true
+                    } 
+                    if((a*x2[i]+b) > y2[i] || (a*x2[i]+b) < y1[i]){
+                        fill("green")
+                        circle(x2[i],(a*x2[i]+b),25)
+                        obstructionsy2[i]=false
+                    }
+                }
             }
 
-
-
-
-
-
-            
-            
         }
-        //print(this.path)
-        line(this.position.x,this.position.y,player.position.x,player.position.y)
+
         
-    }
+        
+        if(obstructionsx1.includes(true)){
+            this.path=false
+        }
+        
+        if(obstructionsx2.includes(true)){
+            this.path=false
+        } 
+       
+        if(obstructionsy1.includes(true)){
+            this.path=false
+        }
+       
+        if(obstructionsy2.includes(true)){
+            this.path=false
+        }
+       
+        
+        line(this.position.x,this.position.y,player.position.x,player.position.y)
+
+
+        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.shootingDist && this.path){
+            enemyShoot()
+        }
+        
+    }   
 
 
     show(){
@@ -158,7 +205,7 @@ class Enemy extends Character {
         circle(0,0,this.detectRange*2)
         stroke("red")
         circle(0,0,this.shootingDist*2)
-        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<250){
+        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.detectRange){
             //Enemy uses algebra, to loctate and detect the player.
             let dx = this.position.x - player.position.x;
             let dy = this.position.y - player.position.y;

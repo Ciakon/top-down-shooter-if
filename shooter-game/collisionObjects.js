@@ -77,3 +77,11 @@ class WoodenPlanks extends CollisionObjects{
         this.image = woodenPlanks
     }
 }
+
+class YellowBigIronbox extends CollisionObjects{
+  constructor(x,y,scaling=1){
+    super(x,y,scaling)
+    this.width=214
+    this.height=106
+  }
+}

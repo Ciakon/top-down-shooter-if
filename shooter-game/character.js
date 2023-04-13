@@ -5,15 +5,15 @@ class Character {
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
-    this.weapon = "shotgun"
+    this.weapon = "pistol"
     this.existingBullets = [];
     this.maxHealth = 100;
     this.health = 80;
     this.size = 1;
     this.shootingCooldown = 0;
     this.hitboxes = [];
-    this.ammo=5
     this.maxAmmo=10
+    this.ammo = this.maxAmmo
     this.reloadTime=120;
   }
 
@@ -65,6 +65,7 @@ class Character {
     let damage;
     let size;
     let newAngle
+    let bulletTimer
     
     if (this.weapon == "shotgun") {
       this.shootingCooldown = 60
@@ -74,6 +75,17 @@ class Character {
       speed = 8;
       damage = 1;
       size = 2;
+      bulletTimer = 40
+    }
+    if (this.weapon == "pistol") {
+      this.shootingCooldown = 10
+      inaccuracy = 2
+      barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
+      bulletAmount = 1;
+      speed = 10;
+      damage = 4;
+      size = 2;
+      bulletTimer = 80
     }
 
     // change angle, because it comes from barrel and not character location
@@ -101,7 +113,7 @@ class Character {
     }
 
     for (let i = 0; i < bulletAmount; i++) {
-      append(this.existingBullets, new Bullet(barrelLocation.x, barrelLocation.y, newAngle + random(-inaccuracy, inaccuracy), speed + random(-speed*0.1, speed*0.1), damage, size))
+      append(this.existingBullets, new Bullet(barrelLocation.x, barrelLocation.y, newAngle + random(-inaccuracy, inaccuracy), speed + random(-speed*0.1, speed*0.1), damage, size, bulletTimer))
     }
 
   }
@@ -127,9 +139,9 @@ class Character {
         continue
       }
 
-      this.existingBullets[i].bulltetTimer--;
+      this.existingBullets[i].bulletTimer--;
 
-      if (this.existingBullets[i].bulltetTimer <= 0) {
+      if (this.existingBullets[i].bulletTimer <= 0) {
         this.existingBullets.splice(i, 1)
         i--;
         continue
@@ -202,14 +214,14 @@ class Character {
 }
 
 class Bullet {
-  constructor(posX, posY, angle, speed, damage, size) {
+  constructor(posX, posY, angle, speed, damage, size, timer) {
     this.position = {x: posX, y: posY}
     this.speed = speed;
     this.angle = angle;
     this.damage = damage;
     this.size = size;
     this.collisionPoints;
-    this.bulltetTimer = 60;
+    this.bulletTimer = timer
   }
 
   collisionCheck() {
