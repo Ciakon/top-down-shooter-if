@@ -5,7 +5,7 @@ class Character {
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
-    this.weapon = "pistol"
+    this.weapon = "shotgun"
     this.existingBullets = [];
     this.maxHealth = 100;
     this.health = 80;

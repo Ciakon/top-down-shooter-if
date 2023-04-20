@@ -17,7 +17,7 @@ function preload() {
   woodenPlanks = loadImage("assets/wooden-Planks.png");
   mySound = loadSound("assets/Cyberpunk.mp3");
   yellowBigIronBox = loadImage("assets/yellow-Big-Iron-Box.png");
-  carboardBoxes = loadImage("assets/carboad-Boxes.png");
+  carboardBoxes = loadImage("assets/carboard-Boxes.png");
   yellowSquaredIronBox = loadImage("assets/yellow-Square-Like-Iron-Box.png");
   bigVent = loadImage("assets/big-Vent.png");
   smallVent = loadImage("assets/small-Vent.png");

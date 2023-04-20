@@ -4,8 +4,8 @@ class Enemy extends Character {
         this.position = {x: x, y : y}
         this.health = 50;
         this.maxHealth = 50;
-        this.detectRange=1000
-        this.shootingDist=this.detectRange*(3/4)
+        this.detectRange=1000000
+        this.shootingDist=this.detectRange*(1/2550)
         this.path=true
         this.weapon = weapon;
         this.maxAmmo = maxAmmo
@@ -174,6 +174,13 @@ class Enemy extends Character {
        
         if(obstructionsy2.includes(true)){
             this.path=false
+        }
+
+        let speed=0.5
+
+        if(this.path==true){
+            this.position.x+=0.5
+            
         }
        
         

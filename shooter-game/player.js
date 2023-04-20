@@ -72,5 +72,5 @@ class Player extends Character {
 }
 
 function mousePressed() {
-    //player.shoot()
+    player.shoot()
 }

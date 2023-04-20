@@ -20,9 +20,20 @@ function waveManager() {
             append(enemies, new Enemy(random(100, width - 100), random(100, height - 100)))
         }
     }
-
-
-
+    if (wave == 4 && waveStart) {
+        for (let i = 0; i < 4; i++) {
+            append(enemies, new Enemy(random(100, width - 100), random(100, height - 100)))
+        }
+    }
+    if (wave == 5 && waveStart) {
+        for (let i = 0; i < 5; i++) {
+            append(enemies, new Enemy(random(100, width - 100), random(100, height - 100)))
+        }
+    }
+    if (wave >= 6 && waveStart) {
+        
+    }
+    
 
     waveStart = false;
     if (!enemies.length) {
