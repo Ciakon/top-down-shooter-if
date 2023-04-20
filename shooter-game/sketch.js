@@ -15,29 +15,35 @@ function preload() {
   characterShotgunIdleAnimation = loadImage("assets/characterShotgunIdle.png");
   bigIronBox = loadImage("assets/big-Iron-Box.png");
   woodenPlanks = loadImage("assets/wooden-Planks.png");
-  mySound = loadSound("assets/Cyberpunk.mp3");
   yellowBigIronBox = loadImage("assets/yellow-Big-Iron-Box.png");
-  carboardBoxes = loadImage("assets/carboard-Boxes.png");
+  cardboardBoxes = loadImage("assets/cardboard-Boxes.png");
+  squaredIronBox = loadImage("assets/square-Like-Iron-Box.png");
   yellowSquaredIronBox = loadImage("assets/yellow-Square-Like-Iron-Box.png");
   bigVent = loadImage("assets/big-Vent.png");
   smallVent = loadImage("assets/small-Vent.png");
+  ShotgunFire = loadSound('assets/Shotgun.mp3');
+  EmtpyMag = loadSound('assets/Empty_magazine.mp3');
+  ReloadShotGun = loadSound('assets/Reload.mp3');
+  backGroundMusic = loadSound("assets/Cyberpunk.mp3");
 }
 
 let character;
 let player;
 let enemies = [];
 let collisionObjects = [];
-let box3;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   rectMode(CENTER);
-  append(collisionObjects, (box1 = new BigIronBox(700, 201)));
-  append(collisionObjects, (box2 = new WoodenPlanks(500, 200)));
-  //append(collisionObjects, (box3 = new BigIronBox(600, 700)));
-  box1.generateHitboxes();
-  box2.generateHitboxes();
-  //box3.generateHitboxes();
+  append(collisionObjects, ( new BigIronBox(700, 200)));
+  append(collisionObjects, ( new WoodenPlanks(500, 200)));
+  append(collisionObjects, ( new CardboardBoxes(200, 200)));
+  append(collisionObjects, ( new YellowBigIronBox(700, 400)));
+
+  for (let i = 0; i < collisionObjects.length; i++) {
+    collisionObjects[i].generateHitboxes()
+  }
+  
   //requestPointerLock()
   //character = new Character()
   player = new Player();
@@ -45,10 +51,12 @@ function setup() {
 
   //append(enemies, new Enemy(300,300))
   //mySound.play();
+
 }
 
 function draw() {
   background(220);
+  //backGroundMusic.play()
   //console.log(movedX)
   imageMode(CENTER);
   player.ui();

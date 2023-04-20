@@ -48,10 +48,13 @@ class Player extends Character {
         noFill();
         strokeWeight(3)
         //MaxHealth bar
+    
         rect(windowWidth/10, windowHeight/25, this.maxHealth, 25);
         fill("Red");
         //Current Health
+        if(this.health>0){
         rect(windowWidth/10-(this.maxHealth-this.health)/2, windowHeight/25, this.health, 25);
+        }
         fill("Gold");
         stroke("black");
         //Ammo indicator
@@ -63,14 +66,17 @@ class Player extends Character {
         pop()
     }
     reload(){
-        if(keyCode == 82){
-            if(this.ammo<=0){
-                this.ammo+=this.maxAmmo
+        if(keyIsPressed){
+            if(keyCode == 82){
+                if(this.ammo<=0){
+                ReloadShotGun+=this.maxAmmo
+                    ReloadShotGun.play();
+                }
             }
         }
     }
 }
 
-function mousePressed() {
-    player.shoot()
+function mousePressed (){
+    ShotgunFire.play
 }

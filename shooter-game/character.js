@@ -15,6 +15,14 @@ class Character {
     this.maxAmmo=10
     this.ammo = this.maxAmmo
     this.reloadTime=120;
+    this.damageMultiplier = 1;
+  }
+
+
+  death() {
+    if (this.health <= 0) {
+        return true;
+    }
   }
 
   show() {
@@ -26,34 +34,42 @@ class Character {
  * @param {"string"} direction cardinal and ordinal directions (Up-Left, Up, Down-Right)
  */
   move(direction) {
-    if (direction == "Up") {
-      this.position.y -= this.speed;
+    let moveReverse = 1;
+    let angle;
+
+    if (this.collisionCheckBox(direction)) {
+      moveReverse = -2
     }
+
+    if (direction == "Up") {
+      angle = 90;
+    }
+
     if (direction == "Up-Right") {
-      this.position.y -= this.speed;
-      this.position.x += this.speed;
+      angle = 45;
     }
     if (direction == "Right") {
-      this.position.x += this.speed;
+      angle = 0;
     }
     if (direction == "Down-Right") {
-      this.position.y += this.speed;
-      this.position.x += this.speed;
+      angle = 315;
     }
     if (direction == "Down") {
-      this.position.y += this.speed;
+      angle = 270;
     }
     if (direction == "Down-Left") {
-      this.position.y += this.speed;
-      this.position.x -= this.speed;
+      angle = 225;
     }
     if (direction == "Left") {
-      this.position.x -= this.speed;
+      angle = 180
     }
     if (direction == "Up-Left") {
-      this.position.y -= this.speed;
-      this.position.x -= this.speed;
+      angle = 135
     }
+    /*
+    this.position.x += cos(angle)*this.speed
+    this.position.y += sin(angle)*this.speed
+    */
   }
 
   shoot() {
@@ -72,10 +88,11 @@ class Character {
       inaccuracy = 8
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
       bulletAmount = 16;
-      speed = 8;
+      speed = 7;
       damage = 1;
       size = 2;
       bulletTimer = 40
+      ShotgunFire.play();
     }
     if (this.weapon == "pistol") {
       this.shootingCooldown = 10
@@ -87,6 +104,8 @@ class Character {
       size = 2;
       bulletTimer = 80
     }
+
+    damage = damage*=this.damageMultiplier;
 
     // change angle, because it comes from barrel and not character location
     if (this instanceof Player) {
@@ -209,7 +228,16 @@ class Character {
     pop()
   }
 
+  collisionCheckBox(direction) {
 
+    for (let i = 0; i < collisionObjects.length; i++) {
+      box = collisionObjects[i]
+      if (pointInBox(this.position.x, this.position.y, box.hitboxes.x1, box.hitboxes.x2, box.hitboxes.x3, box.hitboxes.x4, box.hitboxes.y1, box.hitboxes.y2, box.hitboxes.y3, box.hitboxes.y4)) {
+        console.log("true")
+        return true;
+      }
+    }
+  }
 
 }
 
@@ -328,6 +356,7 @@ class Bullet {
     }
 
   }
+
 
 }
 
