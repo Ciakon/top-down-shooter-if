@@ -4,10 +4,29 @@ let boxPositions;
 
 function waveManager() {
     if (wave == 1 && waveStart) {
+
+        //create boxes
+        //collisionObjects = [];
+
         for (let i = 0; i < 1; i++) {
-            append(enemies, new Enemy(random(100, width - 100), random(100, height - 100)))
+
+            while (true) {
+                let breakLoop = false;
+                enemyPosition = {x : random(200, width - 200), y : random(200, height - 200)}
+
+                for (let j = 0; j < collisionObjects.length; j++) {
+                    box = collisionObjects[j]
+                    if (pointInBox(enemyPosition.x, enemyPosition.y, box.hitboxes.x1, box.hitboxes.x2, box.hitboxes.x3, box.hitboxes.x4, box.hitboxes.y1, box.hitboxes.y2, box.hitboxes.y3, box.hitboxes.y4)) {
+                        continue;
+                    }
+                    breakLoop = true;
+                }
+                if (breakLoop) break;
+            }
+            enemies.push(new Enemy(enemyPosition.x, enemyPosition.y))
         }
     }
+
 
     if (wave == 2 && waveStart) {
         for (let i = 0; i < 2; i++) {

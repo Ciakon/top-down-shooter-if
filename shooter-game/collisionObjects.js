@@ -73,13 +73,12 @@ class CollisionObjects {
         push();
         stroke(255, 0, 0);
         strokeWeight(2);
-        for (let i = 0; i < this.hitboxes.length; i++) {
-            let hitbox = this.hitboxes[i];
-            line(hitbox.x[0], hitbox.y[0], hitbox.x[1], hitbox.y[1]);
-            line(hitbox.x[1], hitbox.y[1], hitbox.x[2], hitbox.y[2]);
-            line(hitbox.x[2], hitbox.y[2], hitbox.x[3], hitbox.y[3]);
-            line(hitbox.x[3], hitbox.y[3], hitbox.x[0], hitbox.y[0]);
-        }
+
+        line(this.hitboxes.x1, this.hitboxes.y1, this.hitboxes.x2, this.hitboxes.y2);
+        line(this.hitboxes.x2, this.hitboxes.y2, this.hitboxes.x3, this.hitboxes.y3);
+        line(this.hitboxes.x3, this.hitboxes.y3, this.hitboxes.x4, this.hitboxes.y4);
+        line(this.hitboxes.x4, this.hitboxes.y4, this.hitboxes.x1, this.hitboxes.y1);
+
         pop();
     }
 }

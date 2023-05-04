@@ -28,7 +28,6 @@ function boxInBox(x1, x2, x3, x4, y1, y2, y3, y4, x5, x6, x7, x8, y5, y6, y7, y8
 function pointInBox(px, py, x1, x2, x3, x4, y1, y2, y3, y4) {
     //box not angled
     if (x1 - x2 == x4 - x3 && y1 - y2 == y4 - y3) {
-        console.log(px > x1, px < x2, py > y1, py < y4)
         if (px > x1 && px < x2 && py > y1 && py < y4) {
             
             return true

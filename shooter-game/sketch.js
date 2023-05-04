@@ -4,9 +4,19 @@ let characterSize = 50;
 
 let characterShotgunMoveAnimation;
 let characterShotgunIdleAnimation;
-let bigIronBox
-let woodenPlanks
-let song;
+let bigIronBox;
+let woodenPlanks;
+let yellowBigIronBox;
+let cardboardBoxes;
+let squaredIronBox;
+let yellowSquaredIronBox;
+let bigVent;
+let smallVent;
+let ShotgunFire;
+let EmtpyMag;
+let ReloadShotGun;
+let backGroundMusic;
+//let song;
 
 function preload() {
   //soundFormats("mp3", "ogg")
@@ -31,6 +41,7 @@ let character;
 let player;
 let enemies = [];
 let collisionObjects = [];
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
@@ -55,6 +66,10 @@ function setup() {
 }
 
 function draw() {
+  for (let i = 0; i < collisionObjects.length; i++) {
+    collisionObjects[i].showHitboxes();
+  }
+
   background(220);
   //backGroundMusic.play()
   //console.log(movedX)

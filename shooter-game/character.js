@@ -1,4 +1,4 @@
-class Character {
+  class Character {
 
   constructor() {
     this.position = {x: windowWidth/2, y : windowHeight/2}
@@ -34,42 +34,51 @@ class Character {
  * @param {"string"} direction cardinal and ordinal directions (Up-Left, Up, Down-Right)
  */
   move(direction) {
-    let moveReverse = 1;
-    let angle;
-
-    if (this.collisionCheckBox(direction)) {
-      moveReverse = -2
-    }
+    let moveAngle = -1;
+    let inBox = false;
 
     if (direction == "Up") {
-      angle = 90;
+      moveAngle = 90;
     }
-
     if (direction == "Up-Right") {
-      angle = 45;
+      moveAngle = 45;
     }
     if (direction == "Right") {
-      angle = 0;
+      moveAngle = 0;
     }
     if (direction == "Down-Right") {
-      angle = 315;
+      moveAngle = 315;
     }
     if (direction == "Down") {
-      angle = 270;
+      moveAngle = 270;
     }
     if (direction == "Down-Left") {
-      angle = 225;
+      moveAngle = 225;
     }
     if (direction == "Left") {
-      angle = 180
+      moveAngle = 180
     }
     if (direction == "Up-Left") {
-      angle = 135
+      moveAngle = 135
     }
-    /*
-    this.position.x += cos(angle)*this.speed
-    this.position.y += sin(angle)*this.speed
-    */
+
+    if (moveAngle == -1) return
+
+    let newPosition = {x : this.position.x + cos(moveAngle)*this.speed, y : this.position.y - sin(moveAngle)*this.speed}
+
+    for (let i = 0; i < collisionObjects.length; i++) {
+      box = collisionObjects[i]
+
+      if (pointInBox(newPosition.x, newPosition.y, box.hitboxes.x1, box.hitboxes.x2, box.hitboxes.x3, box.hitboxes.x4, box.hitboxes.y1, box.hitboxes.y2, box.hitboxes.y3, box.hitboxes.y4)) {
+        inBox = true
+      }
+    }
+
+    if (!inBox) {
+      this.position.x = newPosition.x
+      this.position.y = newPosition.y
+    }
+
   }
 
   shoot() {
@@ -233,7 +242,6 @@ class Character {
     for (let i = 0; i < collisionObjects.length; i++) {
       box = collisionObjects[i]
       if (pointInBox(this.position.x, this.position.y, box.hitboxes.x1, box.hitboxes.x2, box.hitboxes.x3, box.hitboxes.x4, box.hitboxes.y1, box.hitboxes.y2, box.hitboxes.y3, box.hitboxes.y4)) {
-        console.log("true")
         return true;
       }
     }
