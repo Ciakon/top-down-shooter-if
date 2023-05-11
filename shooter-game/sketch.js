@@ -16,6 +16,7 @@ let ShotgunFire;
 let EmtpyMag;
 let ReloadShotGun;
 let backGroundMusic;
+let floor;
 //let song;
 
 function preload() {
@@ -31,6 +32,7 @@ function preload() {
   yellowSquaredIronBox = loadImage("assets/yellow-Square-Like-Iron-Box.png");
   bigVent = loadImage("assets/big-Vent.png");
   smallVent = loadImage("assets/small-Vent.png");
+  floor = loadImage("assets/background.png")
   ShotgunFire = loadSound('assets/Shotgun.mp3');
   EmtpyMag = loadSound('assets/Empty_magazine.mp3');
   ReloadShotGun = loadSound('assets/Reload.mp3');
@@ -66,11 +68,13 @@ function setup() {
 }
 
 function draw() {
+  background(220)
+  //image(floor,width/2,height/2,windowWidth,windowHeight)
   for (let i = 0; i < collisionObjects.length; i++) {
     collisionObjects[i].showHitboxes();
   }
 
-  background(220);
+  
   //backGroundMusic.play()
   //console.log(movedX)
   imageMode(CENTER);

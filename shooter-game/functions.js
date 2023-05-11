@@ -37,3 +37,26 @@ function pointInBox(px, py, x1, x2, x3, x4, y1, y2, y3, y4) {
 
     //box angled
 }
+
+function CharacterInBox(character, box) {
+    let c = {x : character.position.x, y : character.position.y}; //charcter position
+
+    let b = box.hitboxes; //box hitboxes
+    let pd = 15; //point distance from center
+    
+    if (
+        pointInBox(c.x, c.y + pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x + cos(pd)*pd, c.y + sin(pd)*pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x + pd, c.y, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x + cos(pd)*pd, c.y - sin(pd)*pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x, c.y - pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x - cos(pd)*pd, c.y - sin(pd)*pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x - pd, c.y, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4) ||
+        pointInBox(c.x - cos(pd)*pd, c.y + sin(pd)*pd, b.x1, b.x2, b.x3, b.x4, b.y1, b.y2, b.y3, b.y4)
+    )
+    return true;
+}
+
+function boxInBox(){
+    
+}

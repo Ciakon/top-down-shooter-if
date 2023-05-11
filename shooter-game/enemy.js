@@ -1,3 +1,7 @@
+let lastSeenX;
+let lastSeenY;
+let lastSeenAngle;
+
 class Enemy extends Character {
     constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun", maxAmmo = 10, health = 50, speed = 0.8, damageMultiplier = 1) {
         super()
@@ -63,7 +67,7 @@ class Enemy extends Character {
                         fill("blue")
                         circle(x1[i],(a*x1[i]+b),25)
                         obstructionsy1[i]=true
-                        print("ooft")
+                        
                     } 
                     if((a*x1[i]+b) > y2[i] || (a*x1[i]+b) < y1[i]){
                         fill("green")
@@ -173,14 +177,29 @@ class Enemy extends Character {
             this.path=false
         }
 
-
+        
         if(this.path==true && dist(player.position.x,player.position.y,this.position.x,this.position.y)>50){
             this.position.x+=(cos(this.angle)*this.speed)
             this.position.y+=(sin(this.angle)*this.speed)*(-1)
         }
+
+        
+        if(frameCount % 180 == 0 && this.path==true|| frameCount <= 10 ){
+            lastSeenAngle=this.angle
+            lastSeenX=player.position.x
+            lastSeenY=player.position.y
+        }
+
         
         if(this.path==false){
-            
+            if(this.position.x < lastSeenX + 3 && this.position.x > lastSeenX - 3){
+                this.angle+=5
+            }
+            else {
+                this.position.x+=(cos(lastSeenAngle)*this.speed)
+                this.position.y+=(sin(lastSeenAngle)*this.speed)*(-1)
+                
+            }
         }
         
         line(this.position.x,this.position.y,player.position.x,player.position.y)
@@ -211,7 +230,7 @@ class Enemy extends Character {
         circle(0,0,this.detectRange*2)
         stroke("red")
         circle(0,0,this.shootingDist*2)
-        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.detectRange){
+        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.detectRange&&this.path==true){
             //Enemy uses algebra, to loctate and detect the player.
             let dx = this.position.x - player.position.x;
             let dy = this.position.y - player.position.y;

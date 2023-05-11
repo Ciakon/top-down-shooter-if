@@ -1,3 +1,32 @@
+class CollisionObjectsFactory{
+    create(type, x, y){
+        if(type==="BigIronBox"){
+            return new BigIronBox(x,y);
+        }
+        else if(type==="WoodenPlanks"){
+            return new WoodenPlanks(x,y);
+        }
+        else if(type==="YellowBigIronBox"){
+            return new YellowBigIronBox(x,y);
+        }
+        else if(type==="BigVent"){
+            return new BigVent(x,y);
+        }
+        else if(type==="SmallVent"){
+            return new SmallVent(x,y);
+        }
+        else if(type==="CardboardBoxes"){
+            return new CardboardBoxes(x,y);
+        }
+        else if(type==="SquaredIronBox"){
+            return new SquaredIronBox(x,y);
+        }
+        else if(type==="YellowSquaredIronBox"){
+            return new YellowSquaredIronBox(x,y);
+        }
+    }
+}
+
 class CollisionObjects {
     constructor(x, y, scaling = 1) {
         this.position = { x: x, y: y };
@@ -7,6 +36,7 @@ class CollisionObjects {
         this.health = 200;
         this.hitboxe;
         this.image = bigIronBox;
+        this.generateHitboxes();
     }
 
     death() {
@@ -67,6 +97,7 @@ class CollisionObjects {
             y3: y3,
             y4: y4,
         };
+
     }
 
     showHitboxes() {

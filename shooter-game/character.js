@@ -66,10 +66,11 @@
 
     let newPosition = {x : this.position.x + cos(moveAngle)*this.speed, y : this.position.y - sin(moveAngle)*this.speed}
 
+
     for (let i = 0; i < collisionObjects.length; i++) {
       box = collisionObjects[i]
 
-      if (pointInBox(newPosition.x, newPosition.y, box.hitboxes.x1, box.hitboxes.x2, box.hitboxes.x3, box.hitboxes.x4, box.hitboxes.y1, box.hitboxes.y2, box.hitboxes.y3, box.hitboxes.y4)) {
+      if (CharacterInBox({position : {x : newPosition.x, y : newPosition.y}}, box)) {
         inBox = true
       }
     }
