@@ -14,7 +14,7 @@ let bigVent;
 let smallVent;
 let ShotgunFire;
 let EmtpyMag;
-let ReloadShotGun;
+let ReloadShotGunSound;
 let backGroundMusic;
 let floor;
 //let song;
@@ -35,8 +35,11 @@ function preload() {
   floor = loadImage("assets/background.png")
   ShotgunFire = loadSound('assets/Shotgun.mp3');
   EmtpyMag = loadSound('assets/Empty_magazine.mp3');
-  ReloadShotGun = loadSound('assets/Reload.mp3');
+  ReloadShotGunSound = loadSound('assets/Reload.mp3');
   backGroundMusic = loadSound("assets/Cyberpunk.mp3");
+
+
+  statemachine= new Statemachine();
 }
 
 let character;
@@ -57,6 +60,7 @@ function setup() {
     collisionObjects[i].generateHitboxes()
   }
   
+  
   //requestPointerLock()
   //character = new Character()
   player = new Player();
@@ -67,8 +71,7 @@ function setup() {
 
 }
 
-function draw() {
-  background(220)
+function runGame () {
   //image(floor,width/2,height/2,windowWidth,windowHeight)
   for (let i = 0; i < collisionObjects.length; i++) {
     collisionObjects[i].showHitboxes();
@@ -113,12 +116,14 @@ function draw() {
 }
 
 function mousePressed() {
-  if (player.shootingCooldown > 0) {
-    return;
-  }
+  if (statemachine.transition(event) == "Play"){
+    if (player.shootingCooldown > 0) {
+      return;
+    }
 
-  if (player.ammo > 0) {
-    player.shoot();
-    player.ammo--;
+    if (player.ammo > 0) {
+      player.shoot();
+      player.ammo--;
+    }
   }
 }
