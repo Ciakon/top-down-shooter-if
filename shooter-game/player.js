@@ -70,7 +70,7 @@ class Player extends Character {
             if(keyCode == 82){
                 if(this.ammo<=0){
                 ReloadShotGun+=this.maxAmmo
-                    ReloadShotGun.play();
+                ReloadShotGunSound.play();
                 }
             }
         }
