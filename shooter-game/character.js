@@ -33,7 +33,7 @@
  * 
  * @param {"string"} direction cardinal and ordinal directions (Up-Left, Up, Down-Right)
  */
-  move(direction) {
+  move(direction = "UP", angle = 0) {
     let moveAngle = -1;
     let inBox = false;
 

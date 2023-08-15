@@ -4,7 +4,7 @@
 class Player extends Character {
     constructor() {
         super();
-        //this.ammo=10
+        this.ammo=10
     }
 
     direction() {
@@ -17,7 +17,7 @@ class Player extends Character {
             this.angle = 360 - this.angle;
         }
 
-        //line(mouseX, mouseY, this.position.x, this.position.y)y
+        //line(mouseX, mouseY, this.position.x, this.position.y)
     }
 
     movePlayer(Left, Right, Up, Down) {
@@ -75,8 +75,4 @@ class Player extends Character {
             }
         }
     }
-}
-
-function mousePressed (){
-    ShotgunFire.play
 }

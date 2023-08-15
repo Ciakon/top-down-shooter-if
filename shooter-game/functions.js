@@ -60,3 +60,17 @@ function CharacterInBox(character, box) {
 function boxInBox(box1, box2){
     
 }
+
+function getAngle(x1, y1, x2, y2) {
+    let v = atan((y1-y2) / (x1-x2))
+
+    if (x1 > x2) {
+        v += 180
+    }
+
+    else if (y1 > y2) {
+        v += 360
+    }
+
+    return v
+}

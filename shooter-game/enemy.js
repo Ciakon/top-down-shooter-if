@@ -8,16 +8,58 @@ class Enemy extends Character {
         this.position = {x: x, y : y}
         this.health = health;
         this.maxHealth = health;
-        this.detectRange=1000000
-        this.shootingDist=this.detectRange*(1/2550)
-        this.path=true
+        this.detectRange = 1000000
+        this.shootingDist = this.detectRange*(1/2550)
+        this.stopRange = 70
+        this.path = true
         this.weapon = weapon;
         this.maxAmmo = maxAmmo
         this.speed = speed;
         this.damageMultiplier = damageMultiplier;
+        this.moveAngle = 0;
     }
  
+    move(moveAngle = -1) {
+        let inBox = false;
+    
+        if (moveAngle == -1) return
+    
+        let newPosition = {x : this.position.x + cos(moveAngle)*this.speed, y : this.position.y + sin(moveAngle)*this.speed}
+    
+        for (let i = 0; i < collisionObjects.length; i++) {
+          box = collisionObjects[i]
+    
+          if (CharacterInBox({position : {x : newPosition.x, y : newPosition.y}}, box)) {
+            inBox = true
+          }
+        }
+    
+        if (!inBox) {
+          this.position.x = newPosition.x
+          this.position.y = newPosition.y
+
+        }
+    
+      }
+
     AI(){
+        this.moveAngle = getAngle(this.position.x,this.position.y,player.position.x,player.position.y)
+
+        if (dist(this.position.x,this.position.y,player.position.x,player.position.y) > this.stopRange) {
+            this.move(this.moveAngle)
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /*
         this.path = true;
         //When the player enters a certain area, enemy begins shooting
 
@@ -208,7 +250,7 @@ class Enemy extends Character {
         if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.shootingDist && this.path){
             enemyShoot()
         }
-        
+        */
     }   
 
 
@@ -229,7 +271,11 @@ class Enemy extends Character {
         noFill()
         circle(0,0,this.detectRange*2)
         stroke("red")
+        fill(255, 0, 0, 10)
         circle(0,0,this.shootingDist*2)
+        stroke(128, 128, 255, 150) //perwinkle
+        fill(128, 128, 255, 20)
+        circle(0,0,this.stopRange*2)
         if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.detectRange&&this.path==true){
             //Enemy uses algebra, to loctate and detect the player.
             let dx = this.position.x - player.position.x;

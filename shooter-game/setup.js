@@ -48,6 +48,7 @@ let enemies = [];
 let collisionObjects = [];
 
 function setup() {
+
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   rectMode(CENTER);
@@ -78,8 +79,6 @@ function runGame () {
   }
 
   
-  //backGroundMusic.play()
-  //console.log(movedX)
   imageMode(CENTER);
   player.ui();
   player.show();
@@ -116,7 +115,7 @@ function runGame () {
 }
 
 function mousePressed() {
-  if (statemachine.transition(event) == "Play"){
+  if (statemachine.currentState == "Play"){
     if (player.shootingCooldown > 0) {
       return;
     }
@@ -124,6 +123,7 @@ function mousePressed() {
     if (player.ammo > 0) {
       player.shoot();
       player.ammo--;
+      ShotgunFire.play
     }
   }
 }
