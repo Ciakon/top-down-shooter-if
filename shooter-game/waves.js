@@ -102,7 +102,8 @@ function generateCollisionObjects(amount) {
     let cake = [];
 
     for (let i = 0; i < amount; i++) {
-        while (true) {
+        let boxCollision = true;
+        while (boxCollision) {
             let x = random(150, width - 150);
             let y = random(150, width - 150);
             let boxType = random([
@@ -119,13 +120,9 @@ function generateCollisionObjects(amount) {
             let newBox = CollisionObjectsFactory.create(boxType, x, y);
 
             for (let j = 0; j < cake.length; j++) {
-                if (
-                    newBox.x1 < inbox &&
-                    newBox.x3 > inbox &&
-                    newBox.y1 < inbox &&
-                    newBox.y3 > inbox
-                ) {
+                if (!inbox) {
                     cake.push(newBox);
+                    boxCollision = false;
                 }
             }
         }

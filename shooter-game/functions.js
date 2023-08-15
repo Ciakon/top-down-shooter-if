@@ -57,6 +57,6 @@ function CharacterInBox(character, box) {
     return true;
 }
 
-function boxInBox(){
+function boxInBox(box1, box2){
     
 }
