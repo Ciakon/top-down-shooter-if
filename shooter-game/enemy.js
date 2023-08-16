@@ -1,6 +1,7 @@
 let lastSeenX;
 let lastSeenY;
 let lastSeenAngle;
+let timeoutVar = 0;
 
 class Enemy extends Character {
     constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun", maxAmmo = 10, health = 50, speed = 0.8, damageMultiplier = 1) {
@@ -18,6 +19,9 @@ class Enemy extends Character {
         this.damageMultiplier = damageMultiplier;
         this.moveAngle = 0;
         this.moving = true
+        this.blocked = false
+        this.stuckCounter = 0;
+        this.stuck = false;
     }
  
     move(moveAngle = -1) {
@@ -25,7 +29,7 @@ class Enemy extends Character {
     
         if (moveAngle == -1) return
     
-        let newPosition = {x : this.position.x + cos(moveAngle)*this.speed, y : this.position.y + sin(moveAngle)*this.speed}
+        let newPosition = {x : this.position.x + cos(moveAngle)*this.speed, y : this.position.y - sin(moveAngle)*this.speed}
     
         for (let i = 0; i < collisionObjects.length; i++) {
           box = collisionObjects[i]
@@ -38,7 +42,11 @@ class Enemy extends Character {
         if (!inBox) {
           this.position.x = newPosition.x
           this.position.y = newPosition.y
-
+          this.blocked = false
+          return true
+        }
+        else {
+            this.blocked = true;
         }
     
       }
@@ -49,8 +57,16 @@ class Enemy extends Character {
         if (keyIsDown(32)) {
             this.path = false
         }
+        
         else {
             this.path = true
+        }
+
+        // save players most recent position
+        if (this.path || frameCount <= 10 ){
+            this.lastSeenAngle = this.moveAngle
+            this.lastSeenX = player.position.x
+            this.lastSeenY = player.position.y
         }
 
         this.moveAngle = getAngle(this.position.x,this.position.y,player.position.x,player.position.y)
@@ -60,29 +76,120 @@ class Enemy extends Character {
             this.move(this.moveAngle)
         }
 
-        // save players most recent position
-        if (this.path || frameCount <= 10 ){
-            this.lastSeenAngle=this.moveAngle
-            this.lastSeenX=player.position.x
-            this.lastSeenY=player.position.y
-        }
-
         // go to last seen position, if player is hiding
-        if (!this.path) {
+        if (!this.path && !this.blocked) {
             if (dist(this.position.x, this.position.y, this.lastSeenX, this.lastSeenY) > this.stopRange/10) {
                 this.moving = true;
                 this.move(this.lastSeenAngle)
             }
         }
 
-        // enemy walks around box
-        if (!moving) {
-            findClosestCorner(this.position.x, this.position.y)
+        
+
+        if (this.blocked) {
+            let blocked = false;
+        
+            if (this.lastSeenAngle < 90) {
+
+                if(!this.move(0)) {
+                    blocked = true
+                }
+                if(!this.move(90)) {
+                    blocked = true
+                }
+                
+
+            }
+            else if (this.lastSeenAngle < 180) {
+
+                if(!this.move(180)) {
+                    blocked = true
+                }
+                if(!this.move(90)) {
+                    blocked = true
+                }
+            }
+            else if (this.lastSeenAngle < 270) {
+
+                if(!this.move(180)) {
+                    blocked = true
+                }
+                if(!this.move(270)) {
+                    blocked = true
+                }
+                
+            }
+            else if (this.lastSeenAngle < 360) {
+
+                if(!this.move(0)) {
+                    blocked = true
+                }
+                if(!this.move(270)) {
+                    blocked = true
+                }
+            }
+
+            if (blocked) {
+                this.blocked = true;
+            }
+
+            
+        }
+        else {
+            
+            if (timeoutVar == 30) {
+                this.lastSeenAngle = getAngle(this.position.x, this.position.y, this.lastSeenX, this.lastSeenY)
+                timeoutVar = 0
+            }
+            timeoutVar++;
         }
 
 
+        // fix enemy gettings stuck
 
-        console.log(blockingBox())
+        if (this.lastEnemyX == this.position.x && this.lastEnemyY == this.position.y) {
+           this.stuckCounter++
+        }
+
+        if (this.stuckCounter % 45 == 1 && !this.path) {
+
+            if (!this.move(90)) {
+                for (let i = 0; i < 5; i++) {
+                    this.lastSeenAngle = 180
+                    this.move(180)
+                }
+            }
+            else {
+                for (let i = 0; i < 4; i++) {
+                    this.lastSeenAngle = 90
+                    this.move(90)
+                }
+            }
+                
+            this.stuckCounter = 0;
+                
+            }
+
+        this.lastEnemyX = this.position.x
+        this.lastEnemyY = this.position.y
+
+        console.log(this.stuckCounter)
+
+       // this.lastSeenAngle = getAngle(this.position.x, this.position.y, this.lastSeenX, this.lastSeenY)
+
+
+        
+
+        /*if (keyIsDown(39)) //right
+        if (keyIsDown(37)) //left
+        if (keyIsDown(38)) //up
+        if (keyIsDown(40)) //dowm
+        */
+        
+
+
+
+        //console.log(blockingBox())
 
 
         /*

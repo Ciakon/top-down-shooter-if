@@ -57,13 +57,13 @@ function CharacterInBox(character, box) {
 
 
 function getAngle(x1, y1, x2, y2) {
-    let v = atan((y1-y2) / (x1-x2))
+    let v = atan((y2-y1) / (x1-x2))
 
     if (x1 > x2) {
         v += 180
     }
 
-    else if (y1 > y2) {
+    else if (y2 > y1) {
         v += 360
     }
 
@@ -103,12 +103,21 @@ function findClosestCorner(characterX, characterY) {
     for (let i = 0; i < collisionObjects.length; i++) {
         box = collisionObjects[i];
 
-        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.x1, box.y1)){
-            closest = {x: box.x1, y: box.y1}
+        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.hitboxes.x1, box.hitboxes.y1)){
+            closest = {x: box.hitboxes.x1, y: box.hitboxes.y1}
         }
-
-        console.log("closest:", closest)
-
+        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.hitboxes.x2, box.hitboxes.y2)){
+            closest = {x: box.hitboxes.x2, y: box.hitboxes.y2}
+        }
+        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.hitboxes.x3, box.hitboxes.y3)){
+            closest = {x: box.hitboxes.x3, y: box.hitboxes.y3}
+        }
+        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.hitboxes.x4, box.hitboxes.y4)){
+            closest = {x: box.hitboxes.x4, y: box.hitboxes.y4}
+        }
         
     }
+
+    return [closest, box];
+
 }
