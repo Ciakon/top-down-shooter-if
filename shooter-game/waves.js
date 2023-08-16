@@ -6,9 +6,7 @@ function waveManager() {
     if (wave == 1 && waveStart) {
         //create boxes
         let boxAmount = 3;
-
-        //collisionObjects = [];
-
+        
         for (let i = 0; i < 1; i++) {
             while (true) {
                 let breakLoop = false;

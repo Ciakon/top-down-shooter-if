@@ -52,10 +52,16 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   rectMode(CENTER);
-  append(collisionObjects, ( new BigIronBox(700, 200)));
+  append(collisionObjects, ( new BigIronBox(700, 150)));
   append(collisionObjects, ( new WoodenPlanks(500, 200)));
   append(collisionObjects, ( new CardboardBoxes(200, 200)));
   append(collisionObjects, ( new YellowBigIronBox(700, 400)));
+  /*
+  append(collisionObjects, ( new BigVent(700, 100)));
+  append(collisionObjects, ( new SmallVent(500, 400)));
+  append(collisionObjects, ( new SquaredIronBox(400, 400)));
+  */
+
 
   for (let i = 0; i < collisionObjects.length; i++) {
     collisionObjects[i].generateHitboxes()

@@ -32,9 +32,7 @@ function pointInBox(px, py, x1, x2, x3, x4, y1, y2, y3, y4) {
             
             return true
         }
-        return false
     }
-
     //box angled
 }
 
@@ -57,9 +55,6 @@ function CharacterInBox(character, box) {
     return true;
 }
 
-function boxInBox(box1, box2){
-    
-}
 
 function getAngle(x1, y1, x2, y2) {
     let v = atan((y1-y2) / (x1-x2))
@@ -73,4 +68,47 @@ function getAngle(x1, y1, x2, y2) {
     }
 
     return v
+}
+
+
+function blockingBox (x1,y1,x2,y2) {
+    let a = (y2-y1)/(x2-x1)
+    let b = y1-(a*x1)
+    for (let i = 0; i < collisionObjects.length; i++) {
+        
+        box = collisionObjects[i];
+        
+        strokeWeight(30)
+        line(box.hitboxes.x1,box.hitboxes.y1,box.hitboxes.x1,box.hitboxes.y1+box.height)
+        strokeWeight(1)
+        if (
+            (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height
+        ) {
+           return false 
+        } else {
+            return true
+        }
+        
+    }
+    
+}
+
+function findClosestCorner(characterX, characterY) {
+
+    closest = {x: 10000, y: 10000}
+    let x = characterX
+    let y = characterY
+    
+
+    for (let i = 0; i < collisionObjects.length; i++) {
+        box = collisionObjects[i];
+
+        if (dist(x, y, closest.x, closest.y) > dist(x, y, box.x1, box.y1)){
+            closest = {x: box.x1, y: box.y1}
+        }
+
+        console.log("closest:", closest)
+
+        
+    }
 }

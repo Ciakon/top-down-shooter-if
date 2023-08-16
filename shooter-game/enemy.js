@@ -17,6 +17,7 @@ class Enemy extends Character {
         this.speed = speed;
         this.damageMultiplier = damageMultiplier;
         this.moveAngle = 0;
+        this.moving = true
     }
  
     move(moveAngle = -1) {
@@ -43,20 +44,45 @@ class Enemy extends Character {
       }
 
     AI(){
+        this.moving = false;
+
+        if (keyIsDown(32)) {
+            this.path = false
+        }
+        else {
+            this.path = true
+        }
+
         this.moveAngle = getAngle(this.position.x,this.position.y,player.position.x,player.position.y)
 
-        if (dist(this.position.x,this.position.y,player.position.x,player.position.y) > this.stopRange) {
+        if (dist(this.position.x,this.position.y,player.position.x,player.position.y) > this.stopRange && this.path) {
+            this.moving = true
             this.move(this.moveAngle)
+        }
+
+        // save players most recent position
+        if (this.path || frameCount <= 10 ){
+            this.lastSeenAngle=this.moveAngle
+            this.lastSeenX=player.position.x
+            this.lastSeenY=player.position.y
+        }
+
+        // go to last seen position, if player is hiding
+        if (!this.path) {
+            if (dist(this.position.x, this.position.y, this.lastSeenX, this.lastSeenY) > this.stopRange/10) {
+                this.moving = true;
+                this.move(this.lastSeenAngle)
+            }
+        }
+
+        // enemy walks around box
+        if (!moving) {
+            findClosestCorner(this.position.x, this.position.y)
         }
 
 
 
-
-
-
-
-
-
+        console.log(blockingBox())
 
 
         /*
@@ -224,14 +250,6 @@ class Enemy extends Character {
             this.position.x+=(cos(this.angle)*this.speed)
             this.position.y+=(sin(this.angle)*this.speed)*(-1)
         }
-
-        
-        if(frameCount % 180 == 0 && this.path==true|| frameCount <= 10 ){
-            lastSeenAngle=this.angle
-            lastSeenX=player.position.x
-            lastSeenY=player.position.y
-        }
-
         
         if(this.path==false){
             if(this.position.x < lastSeenX + 3 && this.position.x > lastSeenX - 3){
@@ -288,6 +306,19 @@ class Enemy extends Character {
         }
         rotate(-this.angle)    
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
+        pop()
+
+        push()
+
+        //show sight line
+        if (this.path == true) {
+            stroke("green")
+        }
+        else {
+            stroke("red")
+        }
+        line(this.position.x, this.position.y, player.position.x, player.position.y)
+
         pop()
     }
 }
