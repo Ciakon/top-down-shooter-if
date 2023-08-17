@@ -29,16 +29,13 @@ class Statemachine {
 function use (model){
     switch(model.currentState){
         case "Menu":
-
+            menu()
             break;
         case "Play":
             runGame()
             break;
         case "Shop":
-            push()
-            rectMode(CENTER);
-            rect(width/2,height/2,100,100)
-            pop()
+            shop()
             break;
     }
 }
