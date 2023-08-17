@@ -85,7 +85,7 @@ function runGame () {
   }
 
   //player death
-  if(player.death){
+  if(player.health <= 0){
     statemachine.transition("Menu");
     player.health = player.maxHealth
     wave = 1

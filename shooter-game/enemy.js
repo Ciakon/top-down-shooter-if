@@ -173,7 +173,7 @@ class Enemy extends Character {
         this.lastEnemyX = this.position.x
         this.lastEnemyY = this.position.y
 
-        console.log(this.stuckCounter)
+        //console.log(this.stuckCounter)
 
        // this.lastSeenAngle = getAngle(this.position.x, this.position.y, this.lastSeenX, this.lastSeenY)
 
@@ -189,7 +189,7 @@ class Enemy extends Character {
 
 
 
-        console.log(blockingBox(this.position.x,this.position.y,player.position.x,player.position.y))
+        //console.log(blockingBox(this.position.x,this.position.y,player.position.x,player.position.y))
 
 
         /*

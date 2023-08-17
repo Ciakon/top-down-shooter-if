@@ -4,7 +4,7 @@
 class Player extends Character {
     constructor() {
         super();
-        this.ammo=10
+        this.ammo=8
     }
 
     direction() {
@@ -69,7 +69,7 @@ class Player extends Character {
         if(keyIsPressed){
             if(keyCode == 82){
                 if(this.ammo<=0){
-                ReloadShotGun+=this.maxAmmo
+                this.ammo+=this.maxAmmo
                 ReloadShotGunSound.play();
                 }
             }

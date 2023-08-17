@@ -12,7 +12,7 @@
     this.size = 1;
     this.shootingCooldown = 0;
     this.hitboxes = [];
-    this.maxAmmo=10
+    this.maxAmmo=8
     this.ammo = this.maxAmmo
     this.reloadTime=120;
     this.damageMultiplier = 1;
@@ -102,6 +102,8 @@
       damage = 1;
       size = 2;
       bulletTimer = 40
+      player.maxAmmo=8
+      
       ShotgunFire.play();
     }
     if (this.weapon == "pistol") {
@@ -113,16 +115,20 @@
       damage = 4;
       size = 2;
       bulletTimer = 80
+      player.maxAmmo=12
+      
     }
     if (this.weapon == "assault riffle") {
-      this.shootingCooldown = 2
-      inaccuracy = 2
+      this.shootingCooldown = 1
+      inaccuracy = 1
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
       bulletAmount = 1;
-      speed = 7;
-      damage = 1;
+      speed = 6;
+      damage = 2;
       size = 2;
       bulletTimer = 80
+      player.maxAmmo=30
+      
     }
 
 
