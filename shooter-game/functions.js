@@ -82,11 +82,13 @@ function blockingBox (x1,y1,x2,y2) {
         line(box.hitboxes.x1,box.hitboxes.y1,box.hitboxes.x1,box.hitboxes.y1+box.height)
         strokeWeight(1)
         if (
-            (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height
+            (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height ||
+            (a * box.hitboxes.x2 + b) > box.hitboxes.y2 && (a * box.hitboxes.x2 + b) < box.hitboxes.y2 + box.height ||
+            ax+b=y
         ) {
-           return false 
+           return true //something is in the way
         } else {
-            return true
+            return false // line of sight is clear
         }
         
     }

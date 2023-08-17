@@ -189,7 +189,7 @@ class Enemy extends Character {
 
 
 
-        //console.log(blockingBox())
+        console.log(blockingBox(this.position.x,this.position.y,player.position.x,player.position.y))
 
 
         /*
