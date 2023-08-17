@@ -84,6 +84,13 @@ function runGame () {
     collisionObjects[i].showHitboxes();
   }
 
+  //player death
+  if(player.death){
+    statemachine.transition("Menu");
+    player.health = player.maxHealth
+    wave = 1
+  }
+
   
   imageMode(CENTER);
   player.ui();
