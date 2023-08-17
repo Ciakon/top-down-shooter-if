@@ -18,8 +18,8 @@ class Statemachine {
             }
             break;
         case "Shop":
-            if(event == "start"){
-                this.currentState="Play";
+            if(event == "back"){
+                this.currentState="Play"
             }
             break;
         }

@@ -5,8 +5,15 @@ function shop (){
     pop()
 }
  function keyPressed () {
-    if(keyCode == 66){
-        let event="open shop";
-        statemachine.transition(event);
+    if(keyIsPressed){
+        if(keyCode == 66){
+            if(statemachine.currentState == "Play"){
+                let event="open shop";
+                statemachine.transition(event);
+            } else {
+                let event="back";
+                statemachine.transition(event);
+            }
+        }
     }
  }
