@@ -72,8 +72,10 @@ function getAngle(x1, y1, x2, y2) {
 
 
 function blockingBox (x1,y1,x2,y2) {
-    let a = (y2-y1)/(x2-x1)
+    //linear regression
+    let a = (y2-y1)/(x2-x1) 
     let b = y1-(a*x1)
+
     for (let i = 0; i < collisionObjects.length; i++) {
         
         box = collisionObjects[i]; // checks only one box? ... why?
@@ -88,9 +90,7 @@ function blockingBox (x1,y1,x2,y2) {
         } else {
             return false // line of sight is clear
         }
-        
     }
-    
 }
 
 function findClosestCorner(characterX, characterY) {
