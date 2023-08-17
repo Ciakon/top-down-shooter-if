@@ -76,17 +76,15 @@ function blockingBox (x1,y1,x2,y2) {
     let b = y1-(a*x1)
     for (let i = 0; i < collisionObjects.length; i++) {
         
-        box = collisionObjects[i];
+        box = collisionObjects[i]; // checks only one box? ... why?
         
-        strokeWeight(30)
-        line(box.hitboxes.x1,box.hitboxes.y1,box.hitboxes.x1,box.hitboxes.y1+box.height)
-        strokeWeight(1)
         if (
-            (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height ||
-            (a * box.hitboxes.x2 + b) > box.hitboxes.y2 && (a * box.hitboxes.x2 + b) < box.hitboxes.y2 + box.height ||
-            ax+b=y
+            (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height || // left side of box
+            (a * box.hitboxes.x2 + b) > box.hitboxes.y2 && (a * box.hitboxes.x2 + b) < box.hitboxes.y2 + box.height || // right side of box
+            (box.hitboxes.y1 - b) / a > box.hitboxes.x1 && (box.hitboxes.y1 - b) / a < box.hitboxes.x1 + box.width || // top side of box
+            (box.hitboxes.y4 - b) / a > box.hitboxes.x4 && (box.hitboxes.y4 - b) / a < box.hitboxes.x4 + box.width // bottom side of box
         ) {
-           return true //something is in the way
+           return true // something is in the way
         } else {
             return false // line of sight is clear
         }
