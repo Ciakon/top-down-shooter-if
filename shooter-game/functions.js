@@ -71,10 +71,10 @@ function getAngle(x1, y1, x2, y2) {
 }
 
 
-function blockingBox (x1,y1,x2,y2) { //virker halvt
+function blockingBox (ex,ey,px,py) { //virker halvt
     //linear regression
-    let a = (y2-y1)/(x2-x1) 
-    let b = y1-(a*x1)
+    let a = (py-ey)/(px-ex) 
+    let b = ey-(a*ex)
 
     for (let i = 0; i < collisionObjects.length; i++) {
         
@@ -86,7 +86,7 @@ function blockingBox (x1,y1,x2,y2) { //virker halvt
             (box.hitboxes.y1 - b) / a > box.hitboxes.x1 && (box.hitboxes.y1 - b) / a < box.hitboxes.x1 + box.width || // top side of box
             (box.hitboxes.y4 - b) / a > box.hitboxes.x4 && (box.hitboxes.y4 - b) / a < box.hitboxes.x4 + box.width // bottom side of box
         ) {
-           return true // something is in the way
+        return true // something is in the way
         } else {
             return false // line of sight is clear
         }

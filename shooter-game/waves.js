@@ -6,7 +6,16 @@ function waveManager() {
     if (wave == 1 && waveStart) {
         //create boxes
         let boxAmount = 3;
-        
+
+        append(collisionObjects, ( new BigIronBox(random(100,width/2-50), random(100,height/2-50))));
+        append(collisionObjects, ( new WoodenPlanks(random(width/2+50,width-100), random(100,height/2-50))));
+        append(collisionObjects, ( new CardboardBoxes(random(width/2+50,width-100, random(height/2+50,height-100)))));
+        append(collisionObjects, ( new YellowBigIronBox(random(width/2-50,width-100), random(height/2+50,height-100))));
+
+        for (let i = 0; i < collisionObjects.length; i++) {
+            collisionObjects[i].generateHitboxes()
+        }
+
         for (let i = 0; i < 1; i++) {
             while (true) {
                 let breakLoop = false;
