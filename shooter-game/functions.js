@@ -71,7 +71,7 @@ function getAngle(x1, y1, x2, y2) {
 }
 
 
-function blockingBox (x1,y1,x2,y2) {
+function blockingBox (x1,y1,x2,y2) { //virker halvt
     //linear regression
     let a = (y2-y1)/(x2-x1) 
     let b = y1-(a*x1)

@@ -54,11 +54,9 @@ class Enemy extends Character {
     AI(){
         this.moving = false;
 
-        if (keyIsDown(32)) {
-            this.path = false
-        }
-        
-        else {
+        if(blockingBox(this.position.x,this.position.y,player.position.x,player.position.y)){
+            this.path=false
+        } else {
             this.path = true
         }
 
@@ -172,6 +170,8 @@ class Enemy extends Character {
 
         this.lastEnemyX = this.position.x
         this.lastEnemyY = this.position.y
+
+        
 
         //console.log(this.stuckCounter)
 

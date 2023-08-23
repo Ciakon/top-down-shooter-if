@@ -119,7 +119,7 @@
       
     }
     if (this.weapon == "assault riffle") {
-      this.shootingCooldown = 1
+      this.shootingCooldown = 0
       inaccuracy = 1
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
       bulletAmount = 1;

@@ -138,5 +138,8 @@ function mousePressed() {
       player.ammo--;
       ShotgunFire.play
     }
+    if (player.ammo <= 0) {
+      EmtpyMag.play
+    }
   }
 }

@@ -4,7 +4,7 @@ Tax evasion is our main goal.
 
 We want to make a fun top-down shooter for young people. 
 
-vi vil gerne lave en sjov "top-down shooter" for unge. Vores målgruppe er killers. Ud fra vores undersøgelse, har vi fundet ud af at de prioritere gameplay, performance, visuals. Vi vil derfor fokusere på disse punkter i udviklingen af spillets. Herefter vil vi tilføje ting der er mindre prioriteret, fx Storytelling, animationer osv. Hvis tiden tillader det.
+Vi vil gerne lave en sjov "top-down shooter" for unge. Vores målgruppe er killers. Ud fra vores undersøgelse, har vi fundet ud af at de prioritere gameplay, performance, visuals. Vi vil derfor fokusere på disse punkter i udviklingen af spillets. Herefter vil vi tilføje ting der er mindre prioriteret, fx Storytelling, animationer osv. Hvis tiden tillader det.
 
 ## kravspecifikation
 
