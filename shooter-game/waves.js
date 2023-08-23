@@ -1,4 +1,4 @@
-let wave = 1;
+let wave = 1000000;
 let waveStart = true;
 let boxPositions;
 
