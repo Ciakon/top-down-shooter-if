@@ -70,25 +70,48 @@ function getAngle(x1, y1, x2, y2) {
     return v
 }
 
+function checkSpawnConditions() {
+    
+}
 
 function blockingBox (ex,ey,px,py) { //virker halvt
     //linear regression
     let a = (py-ey)/(px-ex) 
     let b = ey-(a*ex)
 
+
     for (let i = 0; i < collisionObjects.length; i++) {
+
+        if (frameCount == 60) print(collisionObjects)
         
         box = collisionObjects[i]; // checks only one box? ... why?
         
+        if (!( // enemy line of sight stops after player
+            (ex < px && box.hitboxes.x1 < px  || ex < px && box.hitboxes.x2 < px ||
+            ex > px && box.hitboxes.x1 > px  || ex > px && box.hitboxes.x2 > px) &&
+            (ey < py && box.hitboxes.y1 < py || ey < py && box.hitboxes.y3 < py ||
+            ey > py && box.hitboxes.y1 > py  || ey > py && box.hitboxes.y3 > py))
+        ) {
+            continue
+        }
+
+        if ( // enemy only looks foward
+            (px < ex && box.hitboxes.x1 > ex || px < ex && box.hitboxes.x2 > ex ||
+            px > ex && box.hitboxes.x1 < ex || px > ex && box.hitboxes.x2 < ex) &&
+            (py < ey && box.hitboxes.y1 > ey || py < ey && box.hitboxes.y3 > ey ||
+            py > ey && box.hitboxes.y1 < ey || py > ey && box.hitboxes.y3 < ey)
+            
+        ) {
+            continue
+        }
+
         if (
             (a * box.hitboxes.x1 + b) > box.hitboxes.y1 && (a * box.hitboxes.x1 + b) < box.hitboxes.y1 + box.height || // left side of box
             (a * box.hitboxes.x2 + b) > box.hitboxes.y2 && (a * box.hitboxes.x2 + b) < box.hitboxes.y2 + box.height || // right side of box
-            (box.hitboxes.y1 - b) / a > box.hitboxes.x1 && (box.hitboxes.y1 - b) / a < box.hitboxes.x1 + box.width || // top side of box
+            (box.hitboxes.y1 - b) / a > box.hitboxes.x1 && (box.hitboxes.y1 - b) / a < box.hitboxes.x1 + box.width  || // top side of box
             (box.hitboxes.y4 - b) / a > box.hitboxes.x4 && (box.hitboxes.y4 - b) / a < box.hitboxes.x4 + box.width // bottom side of box
         ) {
         return true // something is in the way
-        } else {
-            return false // line of sight is clear
         }
     }
 }

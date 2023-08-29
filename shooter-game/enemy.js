@@ -145,7 +145,7 @@ class Enemy extends Character {
 
         // fix enemy gettings stuck
 
-        if (this.lastEnemyX == this.position.x && this.lastEnemyY == this.position.y) {
+        if (this.lastEnemyX == this.position.x && this.lastEnemyY == this.position.y && !((this.position.x - this.lastSeenX < this.stopRange) && (this.position.y - this.lastSeenY < this.stopRange))) {
            this.stuckCounter++
         }
 
@@ -171,6 +171,10 @@ class Enemy extends Character {
         this.lastEnemyX = this.position.x
         this.lastEnemyY = this.position.y
 
+        //shoot
+        if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.shootingDist && this.path){
+            enemyShoot()
+        }
         
 
         //console.log(this.stuckCounter)

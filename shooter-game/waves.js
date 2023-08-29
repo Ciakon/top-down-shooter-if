@@ -1,19 +1,13 @@
 let wave = 1;
 let waveStart = true;
 let boxPositions;
+let enemySpawnRange = 200//spawn distance from player
 
 function waveManager() {
     if (wave == 1 && waveStart) {
         //create boxes
-        let boxAmount = 3;
-
-        append(collisionObjects, ( new BigIronBox(random(100,width/2-50), random(100,height/2-50))));
-        append(collisionObjects, ( new WoodenPlanks(random(width/2+50,width-100), random(100,height/2-50))));
-        append(collisionObjects, ( new CardboardBoxes(random(width/2+50,width-100, random(height/2+50,height-100)))));
-        append(collisionObjects, ( new YellowBigIronBox(random(width/2-50,width-100), random(height/2+50,height-100))));
-
-        for (let i = 0; i < collisionObjects.length; i++) {
-            collisionObjects[i].generateHitboxes()
+         for (let i = 0; i < collisionObjects.length; i++) {
+             collisionObjects[i].generateHitboxes()
         }
 
         for (let i = 0; i < 1; i++) {
@@ -23,11 +17,14 @@ function waveManager() {
                     x: random(200, width - 200),
                     y: random(200, height - 200),
                 };
+                if (dist(enemyPosition.x, enemyPosition.y, player.position.x, player.position.y,) < enemySpawnRange) {
+                    continue
+                }
 
                 for (let j = 0; j < collisionObjects.length; j++) {
                     box = collisionObjects[j];
                     if (
-                        pointInBox(
+                        pointInBox( //make sure enemy doesn't spawn in crate
                             enemyPosition.x,
                             enemyPosition.y,
                             box.hitboxes.x1,
@@ -38,15 +35,16 @@ function waveManager() {
                             box.hitboxes.y2,
                             box.hitboxes.y3,
                             box.hitboxes.y4
-                        )
+                        ) 
                     ) {
                         continue;
+                    } else {
+                        breakLoop = true;
                     }
-                    breakLoop = true;
                 }
                 if (breakLoop) break;
             }
-            enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
+           enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
         }
     }
 

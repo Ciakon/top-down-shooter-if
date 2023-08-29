@@ -40,6 +40,8 @@ class Player extends Character {
         translate(this.position.x, this.position.y)
         rotate(-player.angle)
         image(this.currentAnimation, 0, 0, characterSize, characterSize);
+        stroke("green")
+        circle(0, 0, enemySpawnRange*2)
         pop()
     }
 
