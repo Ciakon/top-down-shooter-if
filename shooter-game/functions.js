@@ -144,3 +144,46 @@ function findClosestCorner(characterX, characterY) {
     return [closest, box];
 
 }
+
+let enemySpawnRange = 200 //spawn distance from player
+//create enemy with correct spawn conditions
+function createEnemy() {
+
+    createBufferSize = 50
+
+    while (true) {
+
+        let breakLoop = true;
+
+        enemyPosition = {
+            x: random(200, width - 200),
+            y: random(200, height - 200),
+        };
+        
+        if (dist(enemyPosition.x, enemyPosition.y, player.position.x, player.position.y,) < enemySpawnRange) {
+            continue
+        }
+
+        for (let j = 0; j < collisionObjects.length; j++) {
+            box = collisionObjects[j];
+            if (
+                pointInBox( //make sure enemy doesn't spawn in crate
+                    enemyPosition.x,
+                    enemyPosition.y,
+                    box.hitboxes.x1 - createBufferSize,
+                    box.hitboxes.x2 + createBufferSize,
+                    box.hitboxes.x3 + createBufferSize,
+                    box.hitboxes.x4 - createBufferSize,
+                    box.hitboxes.y1 - createBufferSize,
+                    box.hitboxes.y2 - createBufferSize,
+                    box.hitboxes.y3 + createBufferSize,
+                    box.hitboxes.y4 + createBufferSize
+                ) 
+            ) {
+                breakLoop = false;
+            }
+        }
+        if (breakLoop) break;
+    }
+   enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
+}

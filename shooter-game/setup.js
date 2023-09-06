@@ -66,6 +66,17 @@ function setup() {
   for (let i = 0; i < collisionObjects.length; i++) {
     collisionObjects[i].generateHitboxes()
   }
+  playbtn=createButton("Play")
+  playbtn.size(100,25)
+  playbtn.position(width/2-50, height/2 + 125)
+
+  shopbtn=createButton("Shop")
+  shopbtn.size(100,25)
+  shopbtn.position(width/2-50, height/2 + 75)
+
+  menubtn=createButton("Menu")
+  menubtn.size(100,25)
+  menubtn.position(width/2-50, height/2+75)
   
   
   //requestPointerLock()
@@ -79,6 +90,9 @@ function setup() {
 }
 
 function runGame () {
+  playbtn.hide()
+  shopbtn.hide()
+  menubtn.hide()
   //image(floor,width/2,height/2,windowWidth,windowHeight)
   for (let i = 0; i < collisionObjects.length; i++) {
     collisionObjects[i].showHitboxes();
@@ -86,7 +100,7 @@ function runGame () {
 
   //player death
   if(player.health <= 0){
-    statemachine.transition("Menu");
+    statemachine.transition("dead");
     player.health = player.maxHealth
     wave = 1
   }

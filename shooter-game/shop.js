@@ -1,7 +1,14 @@
 // visuals
 function shop (){
     push()
-    
+    text("Shop",width/2,50)
+    menubtn.show()
+    shopbtn.hide()
+    playbtn.show()
+    playbtn.mousePressed(function(){statemachine.transition("back")})
+    menubtn.mousePressed(function(){statemachine.transition("menu")})
+    shopbtn.mousePressed(function(){statemachine.transition("menu")})
+
     rectMode(CENTER);
     rect(width/2 - 200,height/2,100,100)
     rect(width/2,height/2,100,100)

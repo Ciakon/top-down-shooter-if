@@ -1,7 +1,7 @@
 let wave = 1;
 let waveStart = true;
 let boxPositions;
-let enemySpawnRange = 200//spawn distance from player
+
 
 function waveManager() {
     if (wave == 1 && waveStart) {
@@ -9,90 +9,43 @@ function waveManager() {
          for (let i = 0; i < collisionObjects.length; i++) {
              collisionObjects[i].generateHitboxes()
         }
-
-        for (let i = 0; i < 1; i++) {
-            while (true) {
-                let breakLoop = false;
-                enemyPosition = {
-                    x: random(200, width - 200),
-                    y: random(200, height - 200),
-                };
-                if (dist(enemyPosition.x, enemyPosition.y, player.position.x, player.position.y,) < enemySpawnRange) {
-                    continue
-                }
-
-                for (let j = 0; j < collisionObjects.length; j++) {
-                    box = collisionObjects[j];
-                    if (
-                        pointInBox( //make sure enemy doesn't spawn in crate
-                            enemyPosition.x,
-                            enemyPosition.y,
-                            box.hitboxes.x1,
-                            box.hitboxes.x2,
-                            box.hitboxes.x3,
-                            box.hitboxes.x4,
-                            box.hitboxes.y1,
-                            box.hitboxes.y2,
-                            box.hitboxes.y3,
-                            box.hitboxes.y4
-                        ) 
-                    ) {
-                        continue;
-                    } else {
-                        breakLoop = true;
-                    }
-                }
-                if (breakLoop) break;
-            }
-           enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
-        }
+            createEnemy()
     }
+    
 
     if (wave == 2 && waveStart) {
         for (let i = 0; i < 2; i++) {
-            append(
-                enemies,
-                new Enemy(random(100, width - 100), random(100, height - 100))
-            );
+            createEnemy()
         }
     }
 
     if (wave == 3 && waveStart) {
         for (let i = 0; i < 3; i++) {
-            append(
-                enemies,
-                new Enemy(random(100, width - 100), random(100, height - 100))
-            );
+            createEnemy()
         }
     }
     if (wave == 4 && waveStart) {
         for (let i = 0; i < 4; i++) {
-            append(
-                enemies,
-                new Enemy(random(100, width - 100), random(100, height - 100))
-            );
+            createEnemy()
         }
     }
     if (wave == 5 && waveStart) {
         for (let i = 0; i < 5; i++) {
-            append(
-                enemies,
-                new Enemy(random(100, width - 100), random(100, height - 100))
-            );
+            createEnemy()
         }
     }
     if (wave >= 6 && waveStart) {
         for (let i = 0; i < random(6, 9); i++) {
-            append(
-                enemies,
-                new Enemy(random(100, width - 100), random(100, height - 100))
-            );
-            this.maxHealth *= 1 + wave / 10;
-            this.health = this.maxHealth;
-            this.speed *= 1 + wave / 10;
-            this.damageMultiplier *= 1 + wave / 10;
-            this.maxAmmo += wave;
-            this.ammo = this.maxAmmo;
+            createEnemy()
+
+            enemy = enemies[i]
+
+            enemy.maxHealth *= 1 + wave / 10;
+            enemy.health = enemy.maxHealth;
+            enemy.speed *= 1 + wave / 10;
+            enemy.damageMultiplier *= 1 + wave / 10;
+            enemy.maxAmmo += wave;
+            enemy.ammo = enemy.maxAmmo;
         }
     }
 

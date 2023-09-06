@@ -8,6 +8,9 @@ class Statemachine {
             if(event == "start"){
                 this.currentState="Play";
             }
+            if(event == "shop"){
+                this.currentState="Shop";
+            }
             break;
         case "Play":
             if(event == "open shop"){
@@ -20,6 +23,9 @@ class Statemachine {
         case "Shop":
             if(event == "back"){
                 this.currentState="Play"
+            }
+            if(event == "menu"){
+                this.currentState="Menu"
             }
             break;
         }
