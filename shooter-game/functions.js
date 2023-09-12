@@ -84,7 +84,7 @@ function blockingBox (ex,ey,px,py) { //virker halvt
 
         if (frameCount == 60) print(collisionObjects)
         
-        box = collisionObjects[i]; // checks only one box? ... why?
+        box = collisionObjects[i]; 
         
         if (!( // enemy line of sight stops after player
             (ex < px && box.hitboxes.x1 < px  || ex < px && box.hitboxes.x2 < px ||
@@ -185,5 +185,13 @@ function createEnemy() {
         }
         if (breakLoop) break;
     }
-   enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
+    
+    enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
+
+    for (let i = 0; i < enemies.length; i++) {
+        enemies[i].lastSeenAngle = enemies[i].moveAngle
+        enemies[i].lastSeenX = player.position.x
+        enemies[i].lastSeenY = player.position.y
+    }
+
 }

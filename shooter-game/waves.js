@@ -10,6 +10,7 @@ function waveManager() {
              collisionObjects[i].generateHitboxes()
         }
             createEnemy()
+            
     }
     
 
@@ -22,16 +23,19 @@ function waveManager() {
     if (wave == 3 && waveStart) {
         for (let i = 0; i < 3; i++) {
             createEnemy()
+            enemies[i].weapon = "assault rifle"
         }
     }
     if (wave == 4 && waveStart) {
         for (let i = 0; i < 4; i++) {
             createEnemy()
+            enemies[i].weapon = "assault rifle"
         }
     }
     if (wave == 5 && waveStart) {
         for (let i = 0; i < 5; i++) {
             createEnemy()
+            enemies[i].weapon = "pistol"
         }
     }
     if (wave >= 6 && waveStart) {
@@ -46,6 +50,8 @@ function waveManager() {
             enemy.damageMultiplier *= 1 + wave / 10;
             enemy.maxAmmo += wave;
             enemy.ammo = enemy.maxAmmo;
+
+            enemies[i].weapon = "pistol"
         }
     }
 

@@ -5,6 +5,7 @@ class Player extends Character {
     constructor() {
         super();
         this.ammo=8
+        this.damageMultiplier = 2
     }
 
     direction() {

@@ -27,9 +27,9 @@ function shop (){
             print("pistol")
         }
         if(mouseX > width / 2 + 150 && mouseX < width / 2 + 250 && mouseY < height / 2 + 50 && mouseY > height / 2 - 50){
-            player.weapon = "assault riffle"
+            player.weapon = "assault rifle"
             player.maxAmmo=30
-            print("assault riffle")
+            print("assault rifle")
         }
     }
    

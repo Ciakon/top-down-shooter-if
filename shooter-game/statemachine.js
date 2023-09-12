@@ -1,6 +1,6 @@
 class Statemachine {
     constructor(){
-        this.currentState="Play"
+        this.currentState="Menu"
     }
     transition (event) {
     switch (this.currentState) {

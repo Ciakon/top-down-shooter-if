@@ -17,11 +17,11 @@ let EmtpyMag;
 let ReloadShotGunSound;
 let backGroundMusic;
 let floor;
-//let song;
+let deathCount=0;
 
 function preload() {
   //soundFormats("mp3", "ogg")
-  //song=loadSound('assets/backgroundMusic.mp3')
+  song=loadSound('assets/Cyberpunk.mp3')
   characterShotgunMoveAnimation = loadImage("assets/characterShotgunMove.gif");
   characterShotgunIdleAnimation = loadImage("assets/characterShotgunIdle.png");
   bigIronBox = loadImage("assets/big-Iron-Box.png");
@@ -82,10 +82,11 @@ function setup() {
   //requestPointerLock()
   //character = new Character()
   player = new Player();
+  
   //append(enemies, new Enemy(100, 100));
 
   //append(enemies, new Enemy(300,300))
-  //mySound.play();
+  song.play();
 
 }
 
@@ -102,10 +103,32 @@ function runGame () {
   if(player.health <= 0){
     statemachine.transition("dead");
     player.health = player.maxHealth
-    wave = 1
+    wave = 0
+    player.ammo=player.maxAmmo
+    enemies = []
+    waveStart = false
+    collisionObjects = []
+    deathCount+=1
+    append(collisionObjects, ( new BigIronBox(700, 150)));
+    append(collisionObjects, ( new WoodenPlanks(500, 200)));
+    append(collisionObjects, ( new CardboardBoxes(200, 200)));
+    append(collisionObjects, ( new YellowBigIronBox(700, 400)));
+
+    for (let i = 0; i < collisionObjects.length; i++) {
+      collisionObjects[i].generateHitboxes()
+    }
+
   }
 
   
+
+  if(player.weapon=="minigun"){
+    if(frameCount % 2 == 0) {
+      ShotgunFire.play()
+    }
+    player.shoot()
+  }
+
   imageMode(CENTER);
   player.ui();
   player.show();

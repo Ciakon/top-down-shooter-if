@@ -5,7 +5,7 @@
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
-    this.weapon = "shotgun"
+    this.weapon = "pistol"
     this.existingBullets = [];
     this.maxHealth = 100;
     this.health = 80;
@@ -94,20 +94,20 @@
     let bulletTimer
     
     if (this.weapon == "shotgun") {
-      this.shootingCooldown = 60
+      this.shootingCooldown = 90
       inaccuracy = 8
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
-      bulletAmount = 16;
+      bulletAmount = 8;
       speed = 7;
       damage = 1;
       size = 2;
       bulletTimer = 40
-      player.maxAmmo=8
+      this.maxAmmo=8
       
       ShotgunFire.play();
     }
     if (this.weapon == "pistol") {
-      this.shootingCooldown = 10
+      this.shootingCooldown = 40
       inaccuracy = 2
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
       bulletAmount = 1;
@@ -115,11 +115,11 @@
       damage = 4;
       size = 2;
       bulletTimer = 80
-      player.maxAmmo=12
+      this.maxAmmo=12
       
     }
-    if (this.weapon == "assault riffle") {
-      this.shootingCooldown = 0
+    if (this.weapon == "assault rifle") {
+      this.shootingCooldown = 15
       inaccuracy = 1
       barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
       bulletAmount = 1;
@@ -127,8 +127,20 @@
       damage = 2;
       size = 2;
       bulletTimer = 80
-      player.maxAmmo=30
+      this.maxAmmo=30
       
+    }
+    if (this.weapon == "minigun") {
+      this.shootingCooldown = 0.5
+      inaccuracy = 10
+      barrelLocation = { x : this.position.x + cos(this.angle + 331)*29*this.size, y : this.position.y - sin(this.angle + 331)*29*this.size}
+      bulletAmount = 1;
+      speed = 18;
+      damage = 2;
+      size = 1;
+      bulletTimer = 20
+      this.maxAmmo=250
+
     }
 
 
