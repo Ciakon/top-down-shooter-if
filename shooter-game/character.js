@@ -1,14 +1,14 @@
   class Character {
 
   constructor() {
-    this.position = {x: windowWidth/2, y : windowHeight/2}
+    this.position = {x: width/2, y : height/2}
     this.currentAnimation = characterShotgunMoveAnimation
     this.angle = random(0, 360)
     this.speed = 3
     this.weapon = "pistol"
     this.existingBullets = [];
     this.maxHealth = 100;
-    this.health = 80;
+    this.health = 100;
     this.size = 1;
     this.shootingCooldown = 0;
     this.hitboxes = [];
@@ -267,7 +267,7 @@
     pop()
   }
 
-  collisionCheckBox(direction) {
+  collisionCheckBox() {
 
     for (let i = 0; i < collisionObjects.length; i++) {
       box = collisionObjects[i]

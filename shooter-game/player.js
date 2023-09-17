@@ -52,20 +52,20 @@ class Player extends Character {
         strokeWeight(3)
         //MaxHealth bar
     
-        rect(windowWidth/10, windowHeight/25, this.maxHealth, 25);
+        rect(width/10, height/25, this.maxHealth, 25);
         fill("Red");
         //Current Health
         if(this.health>0){
-        rect(windowWidth/10-(this.maxHealth-this.health)/2, windowHeight/25, this.health, 25);
+        rect(width/10-(this.maxHealth-this.health)/2, height/25, this.health, 25);
         }
         fill("Gold");
         stroke("black");
         //Ammo indicator
-        rect(this.maxHealth/2+windowWidth/10+15,windowHeight/25,10,25);
+        rect(this.maxHealth/2+width/10+15,height/25,10,25);
         fill("black")
         strokeWeight(1)
         //Ammo counter
-        text("x" + this.ammo,this.maxHealth/2+windowWidth/10+15+10,25)
+        text("x" + this.ammo,this.maxHealth/2+width/10+15+10,25)
         pop()
     }
     reload(){

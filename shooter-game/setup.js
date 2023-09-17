@@ -49,7 +49,7 @@ let collisionObjects = [];
 
 function setup() {
 
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1000, 650);
   angleMode(DEGREES);
   rectMode(CENTER);
   append(collisionObjects, ( new BigIronBox(700, 150)));

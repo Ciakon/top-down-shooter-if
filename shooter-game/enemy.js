@@ -4,7 +4,7 @@ let lastSeenAngle;
 let timeoutVar = 0;
 
 class Enemy extends Character {
-    constructor(x=windowWidth/2,y=windowHeight/2, weapon = "shotgun", maxAmmo = 10, health = 50, speed = 0.8, damageMultiplier = 1) {
+    constructor(x=width/2,y=height/2, weapon = "shotgun", maxAmmo = 10, health = 50, speed = 0.8, damageMultiplier = 1) {
         super()
         this.position = {x: x, y : y}
         this.health = health;
