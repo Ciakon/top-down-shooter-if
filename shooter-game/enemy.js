@@ -61,7 +61,7 @@ class Enemy extends Character {
         }
 
         // save players most recent position
-        if (this.path || frameCount <= 10 ){
+        if (this.path){
             this.lastSeenAngle = this.moveAngle
             this.lastSeenX = player.position.x
             this.lastSeenY = player.position.y

@@ -144,7 +144,7 @@ function findClosestCorner(characterX, characterY) {
     return [closest, box];
 
 }
-
+    
 let enemySpawnRange = 200 //spawn distance from player
 //create enemy with correct spawn conditions
 function createEnemy() {
