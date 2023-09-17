@@ -156,8 +156,8 @@ function createEnemy() {
         let breakLoop = true;
 
         enemyPosition = {
-            x: random(200, width - 200),
-            y: random(200, height - 200),
+            x: random(100, width - 100),
+            y: random(100, height - 100),
         };
         
         if (dist(enemyPosition.x, enemyPosition.y, player.position.x, player.position.y,) < enemySpawnRange) {
@@ -186,6 +186,7 @@ function createEnemy() {
         if (breakLoop) break;
     }
     
+
     enemies.push(new Enemy(enemyPosition.x, enemyPosition.y));
 
     for (let i = 0; i < enemies.length; i++) {
