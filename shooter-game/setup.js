@@ -23,6 +23,9 @@ let killCount=0;
 function preload() {
   //soundFormats("mp3", "ogg")
   song=loadSound('assets/Cyberpunk.mp3')
+  pistolImage = loadImage("assets/pistol.png")
+  shotgunImage = loadImage("assets/shotgun.png")
+  assaultRifleImage = loadImage("assets/assault rifle.png")
   characterShotgunMoveAnimation = loadImage("assets/characterShotgunMove.gif");
   characterShotgunIdleAnimation = loadImage("assets/characterShotgunIdle.png");
   bigIronBox = loadImage("assets/big-Iron-Box.png");
@@ -71,7 +74,7 @@ function setup() {
   playbtn.size(100,25)
   playbtn.position(width/2-50, height/2 + 125)
 
-  shopbtn=createButton("Shop")
+  shopbtn=createButton("Gun Menu")
   shopbtn.size(100,25)
   shopbtn.position(width/2-50, height/2 + 75)
 
@@ -121,8 +124,6 @@ function runGame () {
     }
 
   }
-
-  
 
   if(player.weapon=="minigun"){
     if(frameCount % 2 == 0) {
