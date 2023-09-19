@@ -18,6 +18,7 @@ let ReloadShotGunSound;
 let backGroundMusic;
 let floor;
 let deathCount=0;
+let killCount=0;
 
 function preload() {
   //soundFormats("mp3", "ogg")
@@ -100,7 +101,8 @@ function runGame () {
   }
 
   //player death
-  if(player.health <= 0){
+  if(player.death()){
+    player.kills = 0
     statemachine.transition("dead");
     player.health = player.maxHealth
     wave = 0
@@ -143,6 +145,7 @@ function runGame () {
   //test
   waveManager()
 
+
   for (let i = 0; i < enemies.length; i++) {
     enemies[i].AI();
     enemies[i].show();
@@ -150,6 +153,7 @@ function runGame () {
     enemies[i].showHitboxes("red");
     enemies[i].handleBullets();
     if (enemies[i].death()) {
+      player.kills++
       enemies.splice(i, 1)
     }
   }

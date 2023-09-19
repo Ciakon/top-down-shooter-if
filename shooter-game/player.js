@@ -6,6 +6,7 @@ class Player extends Character {
         super();
         this.ammo=8
         this.damageMultiplier = 2
+        this.kills = 0
     }
 
     direction() {
@@ -66,6 +67,13 @@ class Player extends Character {
         strokeWeight(1)
         //Ammo counter
         text("x" + this.ammo,this.maxHealth/2+width/10+15+10,25)
+
+        //show wave and kills
+        fill("black")
+        noStroke()
+        textSize(20)
+        text(`Wave: ${wave}`, width/2 - 30, 20)
+        text(`Kills: ${this.kills}`, width - 80, 20)
         pop()
     }
     reload(){

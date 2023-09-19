@@ -20,9 +20,7 @@
 
 
   death() {
-    if (this.health <= 0) {
-        return true;
-    }
+    return this.health <= 0
   }
 
   show() {
