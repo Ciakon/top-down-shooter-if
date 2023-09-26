@@ -398,13 +398,13 @@ class Enemy extends Character {
  
         translate(this.position.x, this.position.y)
         noFill()
-        circle(0,0,this.detectRange*2)
-        stroke("red")
-        fill(255, 0, 0, 10)
-        circle(0,0,this.shootingDist*2)
-        stroke(128, 128, 255, 150) //perwinkle
-        fill(128, 128, 255, 20)
-        circle(0,0,this.stopRange*2)
+        // circle(0,0,this.detectRange*2)
+        // stroke("red")
+        // fill(255, 0, 0, 10)
+        // circle(0,0,this.shootingDist*2)
+        // stroke(128, 128, 255, 150) //perwinkle
+        // fill(128, 128, 255, 20)
+        // circle(0,0,this.stopRange*2)
         if(dist(this.position.x,this.position.y,player.position.x,player.position.y)<this.detectRange&&this.path==true){
             //Enemy uses algebra, to loctate and detect the player.
             let dx = this.position.x - player.position.x;
@@ -428,7 +428,7 @@ class Enemy extends Character {
         else {
             stroke("red")
         }
-        line(this.position.x, this.position.y, player.position.x, player.position.y)
+        // line(this.position.x, this.position.y, player.position.x, player.position.y)
 
         pop()
     }

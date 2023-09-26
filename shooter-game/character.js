@@ -255,11 +255,11 @@
     
     for (let i = 0; i < this.hitboxes.length; i++) {
       
-      line(this.hitboxes[i].x[0], this.hitboxes[i].y[0], this.hitboxes[i].x[1], this.hitboxes[i].y[1])
-      line(this.hitboxes[i].x[1], this.hitboxes[i].y[1], this.hitboxes[i].x[2], this.hitboxes[i].y[2])
-      line(this.hitboxes[i].x[2], this.hitboxes[i].y[2], this.hitboxes[i].x[3], this.hitboxes[i].y[3])
-      line(this.hitboxes[i].x[3], this.hitboxes[i].y[3], this.hitboxes[i].x[0], this.hitboxes[i].y[0])
-
+      // line(this.hitboxes[i].x[0], this.hitboxes[i].y[0], this.hitboxes[i].x[1], this.hitboxes[i].y[1])
+      // line(this.hitboxes[i].x[1], this.hitboxes[i].y[1], this.hitboxes[i].x[2], this.hitboxes[i].y[2])
+      // line(this.hitboxes[i].x[2], this.hitboxes[i].y[2], this.hitboxes[i].x[3], this.hitboxes[i].y[3])
+      // line(this.hitboxes[i].x[3], this.hitboxes[i].y[3], this.hitboxes[i].x[0], this.hitboxes[i].y[0])
+      
     }
 
     pop()

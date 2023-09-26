@@ -105,10 +105,10 @@ class CollisionObjects {
         stroke(255, 0, 0);
         strokeWeight(2);
 
-        line(this.hitboxes.x1, this.hitboxes.y1, this.hitboxes.x2, this.hitboxes.y2);
-        line(this.hitboxes.x2, this.hitboxes.y2, this.hitboxes.x3, this.hitboxes.y3);
-        line(this.hitboxes.x3, this.hitboxes.y3, this.hitboxes.x4, this.hitboxes.y4);
-        line(this.hitboxes.x4, this.hitboxes.y4, this.hitboxes.x1, this.hitboxes.y1);
+        // line(this.hitboxes.x1, this.hitboxes.y1, this.hitboxes.x2, this.hitboxes.y2);
+        // line(this.hitboxes.x2, this.hitboxes.y2, this.hitboxes.x3, this.hitboxes.y3);
+        // line(this.hitboxes.x3, this.hitboxes.y3, this.hitboxes.x4, this.hitboxes.y4);
+        // line(this.hitboxes.x4, this.hitboxes.y4, this.hitboxes.x1, this.hitboxes.y1);
 
         pop();
     }
